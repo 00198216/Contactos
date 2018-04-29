@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,18 +25,46 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFragmentInteractionListener, Favoritos.OnFragmentInteractionListener {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
+    static final int REQUEST_CODE_ASK_PERMISSION = 2018;
+    int Read;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void accessPermission(){
+        Read = ActivityCompat.checkSelfPermission(this,Manifest.permission.READ_CONTACTS);
+
+        if(Read != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS},REQUEST_CODE_ASK_PERMISSION);
+        }
+
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String[] permissions, int[ ] grantResults){
+        switch(requestCode){
+            case REQUEST_CODE_ASK_PERMISSION:
+                if(grantResults[0] ==PackageManager.PERMISSION_GRANTED){
+
+                    Toast t= Toast.makeText(getApplicationContext(),"Permiso autorizado",Toast.LENGTH_SHORT);
+                    t.show();
+                }
+                else{
+
+                   Toast t2 =Toast.makeText(getApplicationContext(),"Permiso denegado",Toast.LENGTH_SHORT);
+                   t2.show();
+                }
+                break;
+
+            default:
+                super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        }
+    }
+
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
@@ -44,10 +74,12 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
     //Creando el Viewpager
     private ViewPager mViewPager;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        accessPermission();
 
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -127,7 +159,10 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
+
+
     }
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

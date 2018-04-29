@@ -78,6 +78,8 @@ public class ContactoFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //Preparing the layout for ContactoFragment
+
         view= inflater.inflate(R.layout.fragment_contacto, container, false);
 
         rv =  view.findViewById(R.id.recycler);
