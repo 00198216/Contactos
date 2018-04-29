@@ -1,4 +1,4 @@
-package com.example.charl;
+package com.example.charl.contactos;
 
 import java.io.Serializable;
 
@@ -12,15 +12,11 @@ public class Contactos implements Serializable {
     private int cumple;
     private Boolean Check;
 
-    public Contactos(String name, String Lname, String numero, String ID,int img,int cumple) {
+    public Contactos(String name) {
         this.name = name;
-        this.Lname = Lname;
-        this.numero = numero;
-        this.ID = ID;
-        this.img = img;
-        this.cumple = cumple;
 
     }
+
 
     public String getName() {
         return name;

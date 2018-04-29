@@ -25,7 +25,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFragmentInteractionListener, Favoritos.OnFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -79,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
+    }
 
 
 
@@ -101,12 +104,19 @@ public class MainActivity extends AppCompatActivity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
+        public static Fragment newInstance(int sectionNumber) {
+            Fragment fragment = null;
+
+            switch(sectionNumber) {
+                case 1: fragment= new ContactoFrag();
+                    break;
+
+                case 2: fragment= new Favoritos();
+                    break;
+            }
+
             return fragment;
+
         }
 
         @Override
@@ -140,6 +150,19 @@ public class MainActivity extends AppCompatActivity {
         public int getCount() {
             // A total of two pages(Tabs) will be shown.
             return 2;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position)
+        {
+            switch(position){
+                case 0:
+                    return "Series";
+
+                case 1:
+                    return "Favoritos";
+            }
+            return null;
         }
     }
 }

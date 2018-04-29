@@ -1,4 +1,4 @@
-package com.example.charl.favoritos;
+package com.example.charl.contactos;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
