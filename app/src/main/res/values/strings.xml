@@ -8,4 +8,8 @@
     <string name="buscar_contacto">Buscar Contacto</string>
     <string name="contactos">Contactos</string>
     <string name="favoritos">Favoritos</string>
+    <string name="name">name</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
