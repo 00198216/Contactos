@@ -12,4 +12,26 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_contactos">add_contactos</string>
+    <string name="nuevo_contacto">Nuevo Contacto</string>
+    <string name="nombre">nombre:</string>
+    <string name="nombre1">Nombre</string>
+    <string name="nombre_del_contacto">Nombre del contacto</string>
+    <string name="apellido">Apellido</string>
+    <string name="apellido_del_contacto">Apellido del contacto</string>
+    <string name="nombre2">Nombre:</string>
+    <string name="apellido1">Apellido:</string>
+    <string name="id_del_contacto">ID del contacto</string>
+    <string name="id">ID:</string>
+    <string name="correo">Correo:</string>
+    <string name="correo_del_contacto">Correo del contacto</string>
+    <string name="direccion">Direccion:</string>
+    <string name="direccion_del_contacto">Direccion del contacto</string>
+    <string name="cumplea_os">Cumpleaños:</string>
+    <string name="cumpleanos">Cumpleaños</string>
+    <string name="agregar_contacto">Agregar Contacto</string>
+    <string name="imagen">Imagen</string>
+    <string name="foto">Foto</string>
+    <string name="telefono">Telefono</string>
+    <string name="elegir_imagen">Elegir imagen:</string>
 </resources>

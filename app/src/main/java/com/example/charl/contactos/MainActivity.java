@@ -98,15 +98,8 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
             @Override
             public void onClick(View view) {
 
-                Intent call = new Intent(Intent.ACTION_CALL);
-                call.setData(Uri.parse("tel: 22254830"));
-
-                //Checking Permission is required Marshmallow up
-                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
-                }
-                startActivity(call);
-
+                Intent add = new Intent(getApplicationContext(), Main2Activity.class);
+                startActivity(add);
             }
         });
 
