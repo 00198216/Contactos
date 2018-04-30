@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.charl.contactos.calendario">
 
+   <CalendarView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/cal">
+
+   </CalendarView>
+
 </android.support.constraint.ConstraintLayout>
