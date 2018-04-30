@@ -51,7 +51,7 @@ public class Main2Activity extends AppCompatActivity {
 
             }
         });
-        
+
 
 
 
@@ -67,6 +67,11 @@ public class Main2Activity extends AppCompatActivity {
         if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
             imgu = data.getData();
             imgv.setImageURI(imgu);
+        }
+        if(resultCode == RESULT_OK && requestCode == 1){
+            if(data.hasExtra("Fecha")==true){
+                calen.setText(data.getStringExtra("Fecha"));
+            }
         }
     }
 }
