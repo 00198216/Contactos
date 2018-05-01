@@ -74,9 +74,9 @@ public class Main2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!name.getText().toString().isEmpty() && !Lname.getText().toString().isEmpty()&& !phone.getText().toString().isEmpty()&& !Id.getText().toString().isEmpty()&& !calen.getText().toString().isEmpty() && !mail.getText().toString().isEmpty()) {
-                    Contactos Contacto = new Contactos(name.getText().toString(), Lname.getText().toString(), phone.getText().toString(), Id.getText().toString(), imgv.getResources().getIdentifier("sample_0", "raw", getPackageName()), calen.getText().toString(),mail.getText().toString());
-                    Intent sendIntent = new Intent(getApplicationContext(), MainActivity.class);
-                    sendIntent.putExtra("Name", Contacto);
+                    Contactos ctc = new Contactos(name.getText().toString(), Lname.getText().toString(), phone.getText().toString(), Id.getText().toString(), imgv.getResources().getIdentifier("sample_0", "raw", getPackageName()), calen.getText().toString(),mail.getText().toString());
+                    Intent sendIntent = new Intent(getApplicationContext(), ContactoFrag.class);
+                    sendIntent.putExtra("Name", ctc);
                     setResult(Activity.RESULT_OK, sendIntent);
                     finish();
                 }
@@ -108,6 +108,7 @@ public class Main2Activity extends AppCompatActivity {
             if(data.hasExtra("Fecha")==true){
                 calen.setText(data.getStringExtra("Fecha"));
             }
+
         }
     }
 }

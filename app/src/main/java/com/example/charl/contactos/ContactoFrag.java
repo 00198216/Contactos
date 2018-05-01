@@ -1,6 +1,8 @@
 package com.example.charl.contactos;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,9 +15,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -34,6 +42,10 @@ public class ContactoFrag extends Fragment {
 
     private View view;
     private RecyclerView rv;
+
+    List<Contactos> list = new ArrayList<>();
+
+
 
 
 
@@ -72,6 +84,22 @@ public class ContactoFrag extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(resultCode == RESULT_OK && requestCode == 2){
+            if(data.hasExtra("Name")==true){
+               Contactos conta = (Contactos)data.getExtras().getSerializable("Name");
+                Toast toast1 =
+                        Toast.makeText(getContext(),
+                                "Lucina", Toast.LENGTH_SHORT);
+                toast1.show();
+
+                    list.add(conta);
+
+            }
+        }
     }
 
     @Override
@@ -98,13 +126,17 @@ public class ContactoFrag extends Fragment {
     }
 
     private List<Contactos> getContacts(){
-        List<Contactos> list = new ArrayList<>();
-        Cursor cursor= getContext().getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null,null
+
+
+                Cursor cursor= getContext().getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null,null
                 ,null,ContactsContract.Contacts.DISPLAY_NAME+" ASC");
         cursor.moveToFirst();
         while(cursor.moveToNext()){
             list.add(new Contactos(cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))));
+
         }
+
+
 
         return list;
 

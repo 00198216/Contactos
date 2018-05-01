@@ -1,6 +1,7 @@
 package com.example.charl.contactos;
 
 import android.Manifest;
+import android.app.Application;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -26,6 +27,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -98,12 +102,19 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
             @Override
             public void onClick(View view) {
 
-                Intent add = new Intent(getApplicationContext(), Main2Activity.class);
-                startActivity(add);
+                Intent getInfo= new Intent(getApplicationContext(),Main2Activity.class);
+                startActivityForResult(getInfo, 2);
+
             }
         });
 
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
