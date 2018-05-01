@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
 
     static final int REQUEST_CODE_ASK_PERMISSION = 2018;
     int Read;
+    ContactoFrag one= new ContactoFrag();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void accessPermission(){
@@ -113,6 +114,10 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override
@@ -145,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
 
             switch(sectionNumber) {
                 case 1: fragment= new ContactoFrag();
+                       Fragment fragment2=fragment;
                     break;
 
                 case 2: fragment= new Favoritos();
