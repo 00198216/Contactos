@@ -4,9 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
@@ -20,6 +25,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +53,7 @@ public class ContactoFrag extends Fragment {
     private View view;
     private RecyclerView rv;
     private ContactosAdapter adapter;
+    private Uri ur;
 
     List<Contactos> list = new ArrayList<>();
 
@@ -87,17 +98,21 @@ public class ContactoFrag extends Fragment {
         }
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         if(resultCode == RESULT_OK && requestCode == 2){
-            if(data.hasExtra("Name")==true){
-               Contactos conta = (Contactos)data.getExtras().getSerializable("Name");
-                Toast toast1 =
-                        Toast.makeText(getContext(),
-                                "Lucina", Toast.LENGTH_SHORT);
-                toast1.show();
 
-                    list.add(conta);
+            if(data.hasExtra("Name")==true){
+
+               Contactos conta = (Contactos)data.getExtras().getSerializable("Name");
+               conta.setImgconv(Uri.parse(conta.getImg()));
+
+
+                Contactos conta2 =new Contactos(conta.getName(),conta.getLname(),conta.getNumero(),conta.getID(),conta.getImgconv(),conta.getCumple(),conta.getMail());
+
+                list.add(conta2);
+
 
 
             }
@@ -121,7 +136,7 @@ public class ContactoFrag extends Fragment {
         rv.setLayoutManager(lManager);
 
         adapter= new ContactosAdapter(getContext(),getContacts());
-        
+
         rv.setAdapter(adapter);
 
 
@@ -183,4 +198,5 @@ public class ContactoFrag extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

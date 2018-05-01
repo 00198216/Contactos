@@ -10,17 +10,26 @@ public class Contactos implements Serializable {
     private String Lname;
     private String numero;
     private String ID;
-    private int img;
+    private String img;
     private String cumple;
     private String mail;
     private Boolean Check;
+    private Uri imgconv;
+
+    public Uri getImgconv() {
+        return imgconv;
+    }
+
+    public void setImgconv(Uri imgconv) {
+        this.imgconv = imgconv;
+    }
 
     public Contactos(String name) {
         this.name = name;
 
     }
 
-    public Contactos(String name, String lname, String numero, String ID,int img, String cumple,String mail) {
+    public Contactos(String name, String lname, String numero, String ID,String img, String cumple,String mail) {
         this.name = name;
         Lname = lname;
         this.numero = numero;
@@ -29,7 +38,17 @@ public class Contactos implements Serializable {
         this.cumple = cumple;
         this.mail = mail;
     }
-    public Contactos(String name,int img) {
+
+    public Contactos(String name, String lname, String numero, String ID,Uri imgconv, String cumple,String mail) {
+        this.name = name;
+        Lname = lname;
+        this.numero = numero;
+        this.ID = ID;
+        this.imgconv = imgconv;
+        this.cumple = cumple;
+        this.mail = mail;
+    }
+    public Contactos(String name,String img) {
         this.name = name;
         this.img = img;
 
@@ -75,11 +94,11 @@ public class Contactos implements Serializable {
         this.ID = ID;
     }
 
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

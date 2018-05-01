@@ -44,10 +44,13 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         TextView name;
+        ImageView img;
 
         name=holder.nombre;
+        img= holder.image;
 
         name.setText(contactL.get(position).getName());
+        img.setImageURI(contactL.get(position).getImgconv());
 
 
 
@@ -62,11 +65,14 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView nombre;
+        ImageView image;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             nombre=itemView.findViewById(R.id.name);
+            image= itemView.findViewById(R.id.img);
+
 
 
 
