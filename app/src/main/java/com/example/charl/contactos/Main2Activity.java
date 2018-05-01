@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -51,6 +53,7 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
     File imageFile;
     Uri imgp;
     Bitmap bitmap;
+    Tag tag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,13 +153,8 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
 
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED ) {
 
-                String pth = Environment.getExternalStorageDirectory().getAbsolutePath() + imgu.toString();
-                Toast toast6 =
-                        Toast.makeText(getApplicationContext(),
-                                pth, Toast.LENGTH_SHORT);
 
-                toast6.show();
-                bitmap = BitmapFactory.decodeFile(pth);
+                bitmap = decodeSampledBitmapFromUri(getApplicationContext(),imgu,0,70);
 
                 if (bitmap != null) {
                     Toast toast5 =
@@ -183,6 +181,76 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
             }
 
         }
+    }
+    public static Bitmap decodeSampledBitmapFromUri(Context context,
+                                                    Uri imageUri, int rotate, int maxDimension) {
+        //
+
+        try {// First decode with inJustDecodeBounds=true to check dimensions
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            InputStream is;
+            options.inJustDecodeBounds = true;
+
+            is = context.getContentResolver().openInputStream(imageUri);
+            BitmapFactory.decodeStream(is, null, options);
+            is.close();
+
+            // rotate as necessary
+            int rotatedWidth, rotatedHeight;
+
+            int orientation = 0;
+
+            // if we have a rotation use it otherwise look at the EXIF
+            if (rotate > -1) {
+                orientation = rotate;
+            }
+            if (orientation == 90 || orientation == 270) {
+                rotatedWidth = options.outHeight;
+                rotatedHeight = options.outWidth;
+            } else {
+                rotatedWidth = options.outWidth;
+                rotatedHeight = options.outHeight;
+            }
+
+            Bitmap srcBitmap;
+            is = context.getContentResolver().openInputStream(imageUri);
+            if (rotatedWidth > maxDimension || rotatedHeight > maxDimension) {
+                float widthRatio = ((float) rotatedWidth)
+                        / ((float) maxDimension);
+                float heightRatio = ((float) rotatedHeight)
+                        / ((float) maxDimension);
+                float maxRatio = Math.max(widthRatio, heightRatio);
+
+                // Create the bitmap from file
+                options = new BitmapFactory.Options();
+                options.inSampleSize = (int) Math.round(maxRatio);
+
+                srcBitmap = BitmapFactory.decodeStream(is, null, options);
+            } else {
+                srcBitmap = BitmapFactory.decodeStream(is);
+            }
+
+            is.close();
+            if (srcBitmap != null) {
+
+                if (orientation > 0) {
+                    Matrix matrix = new Matrix();
+                    matrix.postRotate(orientation);
+
+                    srcBitmap = Bitmap.createBitmap(srcBitmap, 0, 0,
+                            srcBitmap.getWidth(), srcBitmap.getHeight(),
+                            matrix, true);
+
+                }
+            }
+
+            return srcBitmap;
+        }
+
+        catch (Exception e) {
+        }
+        return null;
+
     }
 }
 
