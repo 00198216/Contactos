@@ -48,7 +48,8 @@
             android:textColorHint="#FFFF"
             android:textColor="#FFFFFF"
             android:maxLength="17"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:id="@+id/one" />
 
     </LinearLayout>
 
@@ -75,7 +76,8 @@
             android:textColorHint="#FFFF"
             android:textColor="#FFFFFF"
             android:maxLength="17"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:id="@+id/two"/>
 
     </LinearLayout>
 
@@ -102,7 +104,8 @@
             android:textColorHint="#FFFF"
             android:textColor="#FFFFFF"
             android:maxLength="17"
-            android:inputType="phone"/>
+            android:inputType="phone"
+            android:id="@+id/three"/>
 
     </LinearLayout>
 
@@ -129,7 +132,8 @@
             android:textColorHint="#FFFF"
             android:textColor="#FFFFFF"
             android:maxLength="12"
-            android:inputType="number"/>
+            android:inputType="number"
+            android:id="@+id/four"/>
 
     </LinearLayout>
 
@@ -156,7 +160,8 @@
             android:textColorHint="#FFFF"
             android:textColor="#FFFFFF"
             android:maxLength="24"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            android:id="@+id/five"/>
 
     </LinearLayout>
 
@@ -183,7 +188,8 @@
             android:textColorHint="#FFFF"
             android:textColor="#FFFFFF"
             android:maxLength="25"
-            android:inputType="text"/>
+            android:inputType="text"
+            android:id="@+id/six"/>
 
     </LinearLayout>
 
@@ -244,6 +250,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/agregar_contacto"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:id="@+id/Button"/>
 
 </LinearLayout>

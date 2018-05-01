@@ -9,7 +9,8 @@ public class Contactos implements Serializable {
     private String numero;
     private String ID;
     private int img;
-    private int cumple;
+    private String cumple;
+    private String mail;
     private Boolean Check;
 
     public Contactos(String name) {
@@ -17,6 +18,23 @@ public class Contactos implements Serializable {
 
     }
 
+    public Contactos(String name, String lname, String numero, String ID, int img, String cumple,String mail) {
+        this.name = name;
+        Lname = lname;
+        this.numero = numero;
+        this.ID = ID;
+        this.img = img;
+        this.cumple = cumple;
+        this.mail = mail;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
     public String getName() {
         return name;
@@ -58,11 +76,11 @@ public class Contactos implements Serializable {
         this.img = img;
     }
 
-    public int getCumple() {
+    public String getCumple() {
         return cumple;
     }
 
-    public void setCumple(int cumple) {
+    public void setCumple(String cumple) {
         this.cumple = cumple;
     }
 

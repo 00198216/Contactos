@@ -24,7 +24,7 @@ public class calendario extends AppCompatActivity {
                     int          month,
                     int          dayOfMonth ) {
 
-                String Fecha = ""+dayOfMonth+"/"+""+month+"/"+""+year;
+                String Fecha = ""+dayOfMonth+"/"+""+(month+1)+"/"+""+year;
                 Intent sendIntent = new Intent(getApplicationContext(),Main2Activity.class);
                 sendIntent.putExtra("Fecha",Fecha);
                 setResult(Activity.RESULT_OK,sendIntent);
