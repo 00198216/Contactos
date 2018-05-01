@@ -42,6 +42,7 @@ public class ContactoFrag extends Fragment {
 
     private View view;
     private RecyclerView rv;
+    private ContactosAdapter adapter;
 
     List<Contactos> list = new ArrayList<>();
 
@@ -98,8 +99,10 @@ public class ContactoFrag extends Fragment {
 
                     list.add(conta);
 
+
             }
         }
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -116,8 +119,9 @@ public class ContactoFrag extends Fragment {
         RecyclerView.LayoutManager lManager = gManager;
 
         rv.setLayoutManager(lManager);
-        ContactosAdapter adapter = new ContactosAdapter(getContext(),getContacts());
 
+        adapter= new ContactosAdapter(getContext(),getContacts());
+        
         rv.setAdapter(adapter);
 
 
@@ -126,7 +130,6 @@ public class ContactoFrag extends Fragment {
     }
 
     private List<Contactos> getContacts(){
-
 
                 Cursor cursor= getContext().getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null,null
                 ,null,ContactsContract.Contacts.DISPLAY_NAME+" ASC");
