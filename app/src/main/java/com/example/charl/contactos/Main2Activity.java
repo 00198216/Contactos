@@ -154,14 +154,9 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED ) {
 
 
-                bitmap = decodeSampledBitmapFromUri(getApplicationContext(),imgu,0,70);
+                bitmap = decodeSampledBitmapFromUri(getApplicationContext(),imgu,0,50);
 
                 if (bitmap != null) {
-                    Toast toast5 =
-                            Toast.makeText(getApplicationContext(),
-                                    "paso a paso", Toast.LENGTH_SHORT);
-
-                    toast5.show();
 
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 0, bytes);
