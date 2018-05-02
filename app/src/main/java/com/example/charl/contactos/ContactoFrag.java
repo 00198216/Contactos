@@ -105,8 +105,9 @@ public class ContactoFrag extends Fragment {
 
             if(data.hasExtra("Name")==true){
 
-               Contactos conta = (Contactos)data.getExtras().getSerializable("Name");
+               Contactos conta = (Contactos)data.getExtras().getParcelable("Name");
                conta.setImgconv(Uri.parse(conta.getImg()));
+               conta.setImg(conta.getImg());
 
 
                 Contactos conta2 =new Contactos(conta.getName(),conta.getLname(),conta.getNumero(),conta.getID(),conta.getImgconv(),conta.getCumple(),conta.getMail());

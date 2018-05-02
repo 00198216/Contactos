@@ -1,6 +1,8 @@
 package com.example.charl.contactos;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -41,7 +43,7 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         TextView name;
         ImageView img;
@@ -52,9 +54,34 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
         name.setText(contactL.get(position).getName());
         img.setImageURI(contactL.get(position).getImgconv());
 
+        name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent info= new Intent(view.getContext(),Main3Activity.class);
+                Bundle box = new Bundle();
+                box.putParcelable("pass",contactL.get(position));
+                info.putExtras(box);
+                Ctx.startActivity(info);
 
 
+            }
+        });
 
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent info= new Intent(view.getContext(),Main3Activity.class);
+                Bundle box = new Bundle();
+                box.putParcelable("pass",contactL.get(position));
+                info.putExtras(box);
+                Ctx.startActivity(info);
+
+
+            }
+        });
     }
 
     @Override

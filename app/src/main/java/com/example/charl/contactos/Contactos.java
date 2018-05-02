@@ -1,10 +1,12 @@
 package com.example.charl.contactos;
 
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import java.io.Serializable;
 
-public class Contactos implements Serializable {
+public class Contactos implements Parcelable {
 
     private String name;
     private String Lname;
@@ -15,6 +17,31 @@ public class Contactos implements Serializable {
     private String mail;
     private Boolean Check;
     private Uri imgconv;
+
+    protected Contactos(Parcel in) {
+        name = in.readString();
+        Lname = in.readString();
+        numero = in.readString();
+        ID = in.readString();
+        img = in.readString();
+        cumple = in.readString();
+        mail = in.readString();
+        byte tmpCheck = in.readByte();
+        Check = tmpCheck == 0 ? null : tmpCheck == 1;
+        imgconv = in.readParcelable(Uri.class.getClassLoader());
+    }
+
+    public static final Creator<Contactos> CREATOR = new Creator<Contactos>() {
+        @Override
+        public Contactos createFromParcel(Parcel in) {
+            return new Contactos(in);
+        }
+
+        @Override
+        public Contactos[] newArray(int size) {
+            return new Contactos[size];
+        }
+    };
 
     public Uri getImgconv() {
         return imgconv;
@@ -116,5 +143,23 @@ public class Contactos implements Serializable {
 
     public void setCheck(Boolean check) {
         Check = check;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(Lname);
+        dest.writeString(numero);
+        dest.writeString(ID);
+        dest.writeString(img);
+        dest.writeString(cumple);
+        dest.writeString(mail);
+        dest.writeByte((byte) (Check == null ? 0 : Check ? 1 : 2));
+        dest.writeParcelable(imgconv, flags);
     }
 }
