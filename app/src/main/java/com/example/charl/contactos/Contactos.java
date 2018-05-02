@@ -4,26 +4,40 @@ import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 public class Contactos implements Parcelable {
-
     private String name;
     private String Lname;
     private String numero;
     private String ID;
-    private String img;
+    private String adress;
     private String cumple;
     private String mail;
     private Boolean Check;
     private Uri imgconv;
+
+    public Contactos(String name) {
+        this.name = name;
+
+    }
+
+
+    public Contactos(String name, String lname, String numero, String ID,Uri imgconv, String cumple,String mail,String adress) {
+        this.name = name;
+        Lname = lname;
+        this.numero = numero;
+        this.ID = ID;
+        this.imgconv = imgconv;
+        this.cumple = cumple;
+        this.mail = mail;
+        this.adress = adress;
+    }
 
     protected Contactos(Parcel in) {
         name = in.readString();
         Lname = in.readString();
         numero = in.readString();
         ID = in.readString();
-        img = in.readString();
+        adress = in.readString();
         cumple = in.readString();
         mail = in.readString();
         byte tmpCheck = in.readByte();
@@ -42,52 +56,6 @@ public class Contactos implements Parcelable {
             return new Contactos[size];
         }
     };
-
-    public Uri getImgconv() {
-        return imgconv;
-    }
-
-    public void setImgconv(Uri imgconv) {
-        this.imgconv = imgconv;
-    }
-
-    public Contactos(String name) {
-        this.name = name;
-
-    }
-
-    public Contactos(String name, String lname, String numero, String ID,String img, String cumple,String mail) {
-        this.name = name;
-        Lname = lname;
-        this.numero = numero;
-        this.ID = ID;
-        this.img = img;
-        this.cumple = cumple;
-        this.mail = mail;
-    }
-
-    public Contactos(String name, String lname, String numero, String ID,Uri imgconv, String cumple,String mail) {
-        this.name = name;
-        Lname = lname;
-        this.numero = numero;
-        this.ID = ID;
-        this.imgconv = imgconv;
-        this.cumple = cumple;
-        this.mail = mail;
-    }
-    public Contactos(String name,String img) {
-        this.name = name;
-        this.img = img;
-
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
 
     public String getName() {
         return name;
@@ -121,12 +89,12 @@ public class Contactos implements Parcelable {
         this.ID = ID;
     }
 
-    public String getImg() {
-        return img;
+    public String getAdress() {
+        return adress;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     public String getCumple() {
@@ -137,12 +105,28 @@ public class Contactos implements Parcelable {
         this.cumple = cumple;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
     public Boolean getCheck() {
         return Check;
     }
 
     public void setCheck(Boolean check) {
         Check = check;
+    }
+
+    public Uri getImgconv() {
+        return imgconv;
+    }
+
+    public void setImgconv(Uri imgconv) {
+        this.imgconv = imgconv;
     }
 
     @Override
@@ -156,7 +140,7 @@ public class Contactos implements Parcelable {
         dest.writeString(Lname);
         dest.writeString(numero);
         dest.writeString(ID);
-        dest.writeString(img);
+        dest.writeString(adress);
         dest.writeString(cumple);
         dest.writeString(mail);
         dest.writeByte((byte) (Check == null ? 0 : Check ? 1 : 2));

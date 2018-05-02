@@ -65,9 +65,9 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
         Lname = (EditText) findViewById(R.id.two);
         phone = (EditText) findViewById(R.id.three);
         Id =  (EditText) findViewById(R.id.four);
-        adress= (EditText) findViewById(R.id.five);
+        adress= (EditText) findViewById(R.id.six);
         calen= (TextView) findViewById(R.id.cal);
-        mail= (EditText) findViewById(R.id.six);
+        mail= (EditText) findViewById(R.id.five);
         boton= (Button) findViewById(R.id.Button);
 
         imgv.setOnClickListener(new View.OnClickListener() {
@@ -99,10 +99,10 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!name.getText().toString().isEmpty() && !Lname.getText().toString().isEmpty()&& !phone.getText().toString().isEmpty()&& !Id.getText().toString().isEmpty()&& !calen.getText().toString().isEmpty() && !mail.getText().toString().isEmpty()) {
+                if(!adress.getText().toString().isEmpty() &&!name.getText().toString().isEmpty() && !Lname.getText().toString().isEmpty()&& !phone.getText().toString().isEmpty()&& !Id.getText().toString().isEmpty()&& !calen.getText().toString().isEmpty() && !mail.getText().toString().isEmpty()) {
                     if (imgu != null) {
                         if(imgp != null) {
-                            Contactos ctc = new Contactos(name.getText().toString(), Lname.getText().toString(), phone.getText().toString(), Id.getText().toString(), imgp.toString(), calen.getText().toString(), mail.getText().toString());
+                            Contactos ctc = new Contactos(name.getText().toString(), Lname.getText().toString(), phone.getText().toString(), Id.getText().toString(), imgp, calen.getText().toString(), mail.getText().toString(),adress.getText().toString());
                             Intent sendIntent = new Intent(getApplicationContext(), ContactoFrag.class);
                             sendIntent.putExtra("Name", ctc);
                             setResult(Activity.RESULT_OK, sendIntent);
