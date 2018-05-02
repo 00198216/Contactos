@@ -21,7 +21,12 @@ public class Main3Activity extends AppCompatActivity {
 
         Contactos conta = (Contactos)bundle.getParcelable("pass");
 
+        if(conta.getImgconv() ==null) {
+            picture.setImageResource(R.drawable.perfil);
+        }
+        else {
 
-        picture.setImageURI(conta.getImgconv());
+            picture.setImageURI(conta.getImgconv());
+        }
     }
 }
