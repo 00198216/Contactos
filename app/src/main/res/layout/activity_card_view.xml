@@ -12,19 +12,33 @@
     android:layout_weight="1"
     card_view:cardCornerRadius="2dp">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:background="#1A237E"
+        android:layout_height="150dp"
+        >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/img"
-        android:scaleType="centerCrop"
+        android:background="#1A237E"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/perfil"
-        android:layout_height="150dp"/>
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="16dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_gravity="bottom"
         android:gravity="center_vertical"
         android:background="@android:color/white"
-        android:layout_height="50dp">
+        android:layout_height="55dp"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
@@ -36,6 +50,12 @@
             android:gravity="center_vertical"
             android:text="@string/name"
             android:textSize="14sp"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fav"
+            style="?android:attr/starStyle"/>
 
 
 

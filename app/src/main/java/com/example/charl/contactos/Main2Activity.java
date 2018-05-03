@@ -154,7 +154,7 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
 
             if ( PermissionChecker.checkSelfPermission(getApplicationContext(),android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&  PermissionChecker.checkSelfPermission(getApplicationContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED ) {
 
-                bitmap = decodeSampledBitmapFromUri(getApplicationContext(),imgu,0,300);
+                bitmap = decodeSampledBitmapFromUri(getApplicationContext(),imgu,0,500);
 
                 if (bitmap != null) {
 

@@ -112,7 +112,9 @@ public class ContactoFrag extends Fragment {
 
                 Contactos conta2 =new Contactos(conta.getName(),conta.getLname(),conta.getNumero(),conta.getID(),conta.getImgconv(),conta.getCumple(),conta.getMail(),conta.getAdress());
 
+
                 list.add(conta2);
+               
 
 
 
@@ -154,7 +156,7 @@ public class ContactoFrag extends Fragment {
         {
             String name=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            list.add(new Contactos(phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))));
+            list.add(new Contactos(phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))));
 
         }
         phones.close();
