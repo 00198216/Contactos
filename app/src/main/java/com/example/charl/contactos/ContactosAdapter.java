@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.ViewHolder>{
+public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.ViewHolder> {
 
 
     private Context Ctx;
@@ -105,6 +107,8 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
     public int getItemCount() {
         return contactL.size();
     }
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 

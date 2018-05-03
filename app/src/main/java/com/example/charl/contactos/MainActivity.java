@@ -106,8 +106,10 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
                 Intent getInfo= new Intent(getApplicationContext(),Main2Activity.class);
                 startActivityForResult(getInfo, 2);
 
+
             }
         });
+
 
     }
 
@@ -123,6 +125,14 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        return true;
     }
 
 
