@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -151,8 +152,7 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
             imgu = data.getData();
             imgv.setImageURI(imgu);
 
-            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED ) {
-
+            if ( PermissionChecker.checkSelfPermission(getApplicationContext(),android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&  PermissionChecker.checkSelfPermission(getApplicationContext(),android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED ) {
 
                 bitmap = decodeSampledBitmapFromUri(getApplicationContext(),imgu,0,300);
 
@@ -169,6 +169,8 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 5);
                 }
         }
+
+
 
         if(resultCode == RESULT_OK && requestCode == 1){
             if(data.hasExtra("Fecha")==true){
