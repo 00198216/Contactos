@@ -2,6 +2,7 @@ package com.example.charl.contactos;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -23,12 +25,14 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
 
     private Context Ctx;
     private LayoutInflater inflater;
-    private List<Contactos> contactL;
+    public List<Contactos> contactL;
+
 
     public ContactosAdapter(Context Context, List<Contactos> contact){
 
         contactL = contact;
         Ctx = Context;
+
 
 
     }
@@ -48,11 +52,24 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
         TextView name;
         ImageView img;
 
-        name=holder.nombre;
-        img= holder.image;
 
-        name.setText(contactL.get(position).getName());
-        img.setImageURI(contactL.get(position).getImgconv());
+        name=holder.nombre;
+        img=holder.image;
+
+        if(contactL.get(position).getImgconv() == null){
+            name.setText(contactL.get(position).getName());
+            img.setImageResource(R.drawable.perfil);
+        }
+        else {
+            name.setText(contactL.get(position).getName());
+            img.setImageURI(contactL.get(position).getImgconv());
+        }
+
+
+
+
+
+
 
         name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +115,7 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
             super(itemView);
 
             nombre=itemView.findViewById(R.id.name);
-            image= itemView.findViewById(R.id.img);
+            image= itemView.findViewById(R.id.imga);
 
 
 

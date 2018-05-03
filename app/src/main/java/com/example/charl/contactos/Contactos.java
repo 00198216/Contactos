@@ -15,8 +15,9 @@ public class Contactos implements Parcelable {
     private Boolean Check;
     private Uri imgconv;
 
-    public Contactos(String name) {
+    public Contactos(String name,Uri imgconv) {
         this.name = name;
+        this.imgconv = imgconv;
 
     }
 

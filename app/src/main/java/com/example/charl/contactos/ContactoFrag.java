@@ -1,7 +1,9 @@
 package com.example.charl.contactos;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,6 +19,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -101,6 +104,7 @@ public class ContactoFrag extends Fragment {
         }
 
     }
+    @TargetApi(Build.VERSION_CODES.O)
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -114,9 +118,6 @@ public class ContactoFrag extends Fragment {
 
 
                 list.add(conta2);
-               
-
-
 
             }
         }
@@ -151,17 +152,35 @@ public class ContactoFrag extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private List<Contactos> getContacts(){
 
-        Cursor phones = getContext().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
-        while (phones.moveToNext())
-        {
-            String name=phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            list.add(new Contactos(phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))));
+        Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                "://" + getResources().getResourcePackageName(R.drawable.perfil)
+                + '/' + getResources().getResourceTypeName(R.drawable.perfil) + '/' + getResources().getResourceEntryName(R.drawable.perfil) );
+
+        Cursor phones = getContext().getContentResolver().query(
+                ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null,
+                null, null);
+        while (phones.moveToNext()) {
+            String Name = phones
+                    .getString(phones
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            String Number = phones
+                    .getString(phones
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+            String image_uri = phones
+                    .getString(phones
+                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
+
+
+            if (image_uri != null) {
+                list.add(new Contactos(Name,Uri.parse(image_uri)));
+            }
+            else{
+                list.add(new Contactos(Name,imageUri));
+            }
+
 
         }
-        phones.close();
-
-
 
         return list;
 
