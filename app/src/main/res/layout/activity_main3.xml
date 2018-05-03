@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="40sp"
+                android:textSize="25sp"
                 android:textColor="#FFF"
                 android:textStyle="bold"
                 android:layout_gravity="center"
@@ -55,7 +55,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textColor="#FFF"
             android:layout_gravity="center"
             android:id="@+id/bday" />
@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textColor="#FFF"
             android:layout_gravity="center"
             android:id="@+id/identificacion" />
@@ -72,7 +72,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textColor="#FFF"
             android:layout_gravity="center"
             android:id="@+id/addr" />
@@ -80,7 +80,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textColor="#FFF"
             android:layout_gravity="center"
             android:id="@+id/tel" />
@@ -88,7 +88,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textColor="#FFF"
             android:layout_gravity="center"
             android:id="@+id/correo2" />
