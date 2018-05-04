@@ -104,7 +104,7 @@
             android:hint="@string/telefonos"
             android:textColorHint="#FFFF"
             android:textColor="#FFFFFF"
-            android:maxLength="8"
+            android:maxLength="20"
             android:inputType="phone"
             android:id="@+id/edittel"/>
 
@@ -132,7 +132,7 @@
             android:hint="@string/id_del_contacto"
             android:textColorHint="#FFFF"
             android:textColor="#FFFFFF"
-            android:maxLength="12"
+            android:maxLength="13"
             android:inputType="number"
             android:id="@+id/editid"/>
 

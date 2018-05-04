@@ -1,6 +1,7 @@
 package com.example.charl.contactos;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,6 +13,7 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ public class Main4Activity extends AppCompatActivity {
     Uri imgu;
 
     EditText name;
+    Contactos conta;
     EditText Lname;
     EditText phone;
     EditText Id;
@@ -43,6 +46,7 @@ public class Main4Activity extends AppCompatActivity {
     EditText mail;
     Uri imgp;
     Bitmap bitmap;
+    String data = "No disponible";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,10 @@ public class Main4Activity extends AppCompatActivity {
         calen= (TextView) findViewById(R.id.editcal);
         mail= (EditText) findViewById(R.id.editmail);
         boton= (Button) findViewById(R.id.clicker);
+
+        Intent getinfo = this.getIntent();
+        Bundle bundle = getinfo.getExtras();
+        conta = (Contactos) bundle.getParcelable("pass2");
 
         imgv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,11 +86,84 @@ public class Main4Activity extends AppCompatActivity {
                 Intent add = new Intent(getApplicationContext(),calendario.class);
                 startActivityForResult(add,1);
 
-
-
             }
         });
-        
+
+        //Reviso si la imagen esta vacia. Si no se encuentra le asigno una por defecto
+        if (conta.getImgconv() == null) {
+            imgv.setImageResource(R.drawable.perfil);
+        } else {
+
+           imgv.setImageURI(conta.getImgconv());
+        }
+
+        //Reviso si el nombre esta vacio. Si no se encuentra le asigno un warning por defecto.
+        if (conta.getName() == null) {
+            name.setText(data);
+        } else {
+
+            name.setText(conta.getName());
+        }
+
+        //Reviso si el apellido esta vacio. Si no se encuentra le asigno un warning por defecto.
+        if (conta.getLname() == null) {
+            Lname.setText(data);
+        } else {
+
+            Lname.setText(conta.getLname());
+        }
+
+        //Reviso si la direccion esta vacia. Si no se encuentra le asigno un warning por defecto.
+        if (conta.getAdress() == null) {
+            adress.setText(data);
+        } else {
+
+            adress.setText(conta.getAdress());
+        }
+
+        //Reviso si el ID esta vacio. Si no se encuentra le asigno un warning por defecto.
+        if (conta.getID() == null) {
+            Id.setText(data);
+        } else {
+
+            Id.setText(conta.getID());
+        }
+
+        //Reviso si el cumpleaños esta vacio. Si no se encuentra le asigno un warning por defecto.
+        if (conta.getCumple() == null) {
+            calen.setText(data);
+        } else {
+
+            calen.setText(conta.getCumple());
+        }
+
+        //Reviso si el correo esta vacio. Si no se encuentra le asigno un warning por defecto.
+        if (conta.getMail() == null) {
+            mail.setText(data);
+        } else {
+
+            mail.setText(conta.getMail());
+        }
+        //Reviso si el numero esta vacio. Si no se encuentra le asigno un warning por defecto. Si se encuentra revisa los permisos.
+        if (conta.getNumero() != null) {
+
+            //Checking Permission is required Marshmallow up
+            if (ContextCompat.checkSelfPermission(Main4Activity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(Main4Activity.this, new String[]{Manifest.permission.CALL_PHONE}, 7);
+
+            } else {
+
+                phone.setText(conta.getNumero());
+
+            }
+
+        } else {
+            phone.setText(data);
+        }
+
+
+
     }
 
     private void openGallery(){

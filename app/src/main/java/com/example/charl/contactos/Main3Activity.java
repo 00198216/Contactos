@@ -176,7 +176,10 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent modificar = new Intent(getApplicationContext(),Main4Activity.class);
-                startActivityForResult(modificar,9);
+                Bundle box = new Bundle();
+                box.putParcelable("pass2",conta);
+                modificar.putExtras(box);
+                Main3Activity.this.startActivity(modificar);
             }
         });
     }
