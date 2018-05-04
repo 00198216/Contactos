@@ -50,35 +50,35 @@
             android:textColor="#FFFFFF"
             android:maxLength="17"
             android:inputType="text"
-            android:id="@+id/one" />
+            android:id="@+id/editname" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            android:text="@string/apellido1"
             android:layout_marginLeft="5dp"
-            android:textColor="#FFFFFF"/>
+            android:text="@string/apellido1"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
 
         <EditText
+            android:id="@+id/editapellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:textSize="22sp"
             android:hint="@string/apellido_del_contacto"
-            android:textColorHint="#FFFF"
-            android:textColor="#FFFFFF"
-            android:maxLength="17"
             android:inputType="text"
-            android:id="@+id/two"/>
+            android:maxLength="17"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFF"
+            android:textSize="22sp" />
 
     </LinearLayout>
 
@@ -106,7 +106,7 @@
             android:textColor="#FFFFFF"
             android:maxLength="8"
             android:inputType="phone"
-            android:id="@+id/three"/>
+            android:id="@+id/edittel"/>
 
     </LinearLayout>
 
@@ -134,7 +134,7 @@
             android:textColor="#FFFFFF"
             android:maxLength="12"
             android:inputType="number"
-            android:id="@+id/four"/>
+            android:id="@+id/editid"/>
 
     </LinearLayout>
 
@@ -162,7 +162,7 @@
             android:textColor="#FFFFFF"
             android:maxLength="24"
             android:inputType="textEmailAddress"
-            android:id="@+id/five"/>
+            android:id="@+id/editmail"/>
 
     </LinearLayout>
 
@@ -190,7 +190,7 @@
             android:textColor="#FFFFFF"
             android:maxLength="25"
             android:inputType="text"
-            android:id="@+id/six"/>
+            android:id="@+id/editad"/>
 
     </LinearLayout>
 
@@ -216,7 +216,7 @@
             android:hint="@string/cumpleanos"
             android:textColorHint="#FFFF"
             android:textColor="#FFFFFF"
-            android:id="@+id/cal"/>
+            android:id="@+id/editcal"/>
 
     </LinearLayout>
 
@@ -239,7 +239,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/img"
+            android:id="@+id/editimg"
             android:background="#000"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -256,7 +256,7 @@
         android:layout_height="wrap_content"
         android:text="@string/modificar_contacto"
         android:layout_gravity="center"
-        android:id="@+id/Button"/>
+        android:id="@+id/clicker"/>
 
 
 </LinearLayout>

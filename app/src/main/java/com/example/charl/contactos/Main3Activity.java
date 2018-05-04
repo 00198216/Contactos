@@ -171,7 +171,16 @@ public class Main3Activity extends AppCompatActivity {
 
             }
         });
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent modificar = new Intent(getApplicationContext(),Main4Activity.class);
+                startActivityForResult(modificar,9);
+            }
+        });
     }
+
 
     public void Share(View view) {
 

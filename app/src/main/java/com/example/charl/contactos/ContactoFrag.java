@@ -122,7 +122,6 @@ public class ContactoFrag extends Fragment {
                 list.add(conta2);
                 list2.add(conta2);
 
-
             }
         }
         adapter.notifyDataSetChanged();
