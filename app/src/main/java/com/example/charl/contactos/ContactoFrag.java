@@ -158,7 +158,7 @@ public class ContactoFrag extends Fragment {
                 query = query.toLowerCase();
 
                 for(int i=0; i < list2.size(); i++){
-                    if(list2.get(i).getName().toLowerCase().contains(query) ||list2.get(i).getName().toLowerCase().contains(query)){
+                    if(list2.get(i).getName().toLowerCase().contains(query) ){
                         list.add(list2.get(i));
                     }
                 }
@@ -174,17 +174,20 @@ public class ContactoFrag extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
 
+                list.clear();
+
                if(newText.length() ==0) {
                   list.addAll(list2);
                    adapter.notifyDataSetChanged();
                }
 
                else {
-                   list.clear();
+
                    newText = newText.toLowerCase();
 
                    for(int i=0; i < list2.size(); i++){
-                       if(list2.get(i).getName().toLowerCase().contains(newText) ||list2.get(i).getName().toLowerCase().contains(newText)){
+                       if(list2.get(i).getName().toLowerCase().contains(newText)){
+                           list.clear();
                            list.add(list2.get(i));
                        }
                    }
