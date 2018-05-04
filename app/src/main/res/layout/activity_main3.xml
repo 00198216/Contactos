@@ -130,7 +130,7 @@
                 app:srcCompat="@android:drawable/ic_menu_share"
                 android:layout_weight="1"
                 android:background="#1A237E"
-                android:id="@+id/share"/>
+                android:id="@+id/sharing"/>
 
         </LinearLayout>
         <View
