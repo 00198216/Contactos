@@ -33,6 +33,7 @@ public class Main3Activity extends AppCompatActivity {
     TextView bday;
     ImageView call;
     ImageView comp;
+    ImageView edit;
     TextView tel;
     String data = "No disponible";
 
@@ -49,7 +50,8 @@ public class Main3Activity extends AppCompatActivity {
         bday = findViewById(R.id.bday);
         call = findViewById(R.id.calling);
         tel = findViewById(R.id.tel);
-        comp= findViewById(R.id.sharing);
+        comp = findViewById(R.id.sharing);
+        edit = findViewById(R.id.modify);
 
         Intent getinfo = this.getIntent();
         Bundle bundle = getinfo.getExtras();

@@ -187,7 +187,7 @@ public class ContactoFrag extends Fragment {
 
                    for(int i=0; i < list2.size(); i++){
                        if(list2.get(i).getName().toLowerCase().contains(newText) ||list2.get(i).getNumero().contains(newText)){
-                           list.clear();
+                           
                            list.add(list2.get(i));
                        }
                    }
