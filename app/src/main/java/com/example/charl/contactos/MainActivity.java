@@ -2,6 +2,8 @@ package com.example.charl.contactos;
 
 import android.Manifest;
 import android.app.Application;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -12,6 +14,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -33,11 +36,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFragmentInteractionListener, Favoritos.OnFragmentInteractionListener {
 
     static final int REQUEST_CODE_ASK_PERMISSION = 2018;
     int Read;
     ContactoFrag one= new ContactoFrag();
+    public ContactosAdapter adapter;
+    List<Contactos> lista;
+    List<Contactos> lista2;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void accessPermission(){
@@ -111,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
         });
 
 
+
     }
 
     @Override
@@ -131,8 +140,11 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search1).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
+
     }
 
 

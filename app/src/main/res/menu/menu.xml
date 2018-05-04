@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.charl.contactos.MainActivity">
 
-    <item android:id="@+id/search"
+    <item android:id="@+id/search1"
         android:title="@string/search"
         android:orderInCategory="100"
         android:icon="@android:drawable/ic_menu_search"

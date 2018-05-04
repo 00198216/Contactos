@@ -28,12 +28,15 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
     private Context Ctx;
     private LayoutInflater inflater;
     public List<Contactos> contactL;
+    public List<Contactos> contactS;
 
 
     public ContactosAdapter(Context Context, List<Contactos> contact){
 
         contactL = contact;
         Ctx = Context;
+        contactS=contactL;
+
 
 
 
@@ -128,6 +131,5 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
 
         }
     }
-
 
 }

@@ -23,6 +23,7 @@ import android.support.v4.content.PermissionChecker;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,9 +61,10 @@ public class ContactoFrag extends Fragment {
     private RecyclerView rv;
     private ContactosAdapter adapter;
     private Uri ur;
+    SearchView search;
 
     List<Contactos> list = new ArrayList<>();
-
+    List<Contactos> list2 = new ArrayList<>();
 
 
 
@@ -118,6 +120,8 @@ public class ContactoFrag extends Fragment {
 
 
                 list.add(conta2);
+                list2.add(conta2);
+
 
             }
         }
@@ -143,6 +147,55 @@ public class ContactoFrag extends Fragment {
         adapter= new ContactosAdapter(getContext(),getContacts());
 
         rv.setAdapter(adapter);
+
+        SearchView search = getActivity().findViewById(R.id.search);
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                list.clear();
+                query = query.toLowerCase();
+
+                for(int i=0; i < list2.size(); i++){
+                    if(list2.get(i).getName().toLowerCase().contains(query) ||list2.get(i).getName().toLowerCase().contains(query)){
+                        list.add(list2.get(i));
+                    }
+                }
+
+                adapter.notifyDataSetChanged();
+                return true;
+
+
+        }
+
+
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+               if(newText.length() ==0) {
+                  list.addAll(list2);
+                   adapter.notifyDataSetChanged();
+               }
+
+               else {
+                   list.clear();
+                   newText = newText.toLowerCase();
+
+                   for(int i=0; i < list2.size(); i++){
+                       if(list2.get(i).getName().toLowerCase().contains(newText) ||list2.get(i).getName().toLowerCase().contains(newText)){
+                           list.add(list2.get(i));
+                       }
+                   }
+
+                   adapter.notifyDataSetChanged();
+                   return true;
+               }
+
+               return true;
+            }
+        });
 
 
 
@@ -174,9 +227,11 @@ public class ContactoFrag extends Fragment {
 
             if (image_uri != null) {
                 list.add(new Contactos(Name,Uri.parse(image_uri)));
+                list2.add(new Contactos(Name,Uri.parse(image_uri)));
             }
             else{
                 list.add(new Contactos(Name,imageUri));
+                list2.add(new Contactos(Name,imageUri));
             }
 
 
@@ -192,6 +247,8 @@ public class ContactoFrag extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
+
+
 
     @Override
     public void onAttach(Context context) {
