@@ -158,7 +158,7 @@ public class ContactoFrag extends Fragment {
                 query = query.toLowerCase();
 
                 for(int i=0; i < list2.size(); i++){
-                    if(list2.get(i).getName().toLowerCase().contains(query) ){
+                    if(list2.get(i).getName().toLowerCase().contains(query) ||list2.get(i).getNumero().contains(query) ){
                         list.add(list2.get(i));
                     }
                 }
@@ -186,7 +186,7 @@ public class ContactoFrag extends Fragment {
                    newText = newText.toLowerCase();
 
                    for(int i=0; i < list2.size(); i++){
-                       if(list2.get(i).getName().toLowerCase().contains(newText)){
+                       if(list2.get(i).getName().toLowerCase().contains(newText) ||list2.get(i).getNumero().contains(newText)){
                            list.clear();
                            list.add(list2.get(i));
                        }
@@ -229,12 +229,12 @@ public class ContactoFrag extends Fragment {
 
 
             if (image_uri != null) {
-                list.add(new Contactos(Name,Uri.parse(image_uri)));
-                list2.add(new Contactos(Name,Uri.parse(image_uri)));
+                list.add(new Contactos(Name,Uri.parse(image_uri),Number));
+                list2.add(new Contactos(Name,Uri.parse(image_uri),Number));
             }
             else{
-                list.add(new Contactos(Name,imageUri));
-                list2.add(new Contactos(Name,imageUri));
+                list.add(new Contactos(Name,imageUri,Number));
+                list2.add(new Contactos(Name,imageUri,Number));
             }
 
 
