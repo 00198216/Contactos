@@ -84,6 +84,7 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
                 Bundle box = new Bundle();
                 box.putParcelable("pass",contactL.get(position));
                 info.putExtras(box);
+                info.putExtra(Intent.EXTRA_TEXT,String.valueOf(position));
                 Ctx.startActivity(info);
 
 
@@ -98,6 +99,7 @@ public  class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.Vie
                 Intent info= new Intent(view.getContext(),Main3Activity.class);
                 Bundle box = new Bundle();
                 box.putParcelable("pass",contactL.get(position));
+                info.putExtra(Intent.EXTRA_TEXT, String.valueOf(position));
                 info.putExtras(box);
                 Ctx.startActivity(info);
 

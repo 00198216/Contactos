@@ -36,6 +36,7 @@ public class Main3Activity extends AppCompatActivity {
     ImageView edit;
     TextView tel;
     String data = "No disponible";
+    String pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +58,11 @@ public class Main3Activity extends AppCompatActivity {
         Bundle bundle = getinfo.getExtras();
 
         conta = (Contactos) bundle.getParcelable("pass");
+        pos= getinfo.getStringExtra(Intent.EXTRA_TEXT);
+
         Toast toast3 =
                 Toast.makeText(getApplicationContext(),
-                        conta.getLname(), Toast.LENGTH_SHORT);
+                       pos, Toast.LENGTH_SHORT);
         toast3.show();
 
         //Reviso si la imagen esta vacia. Si no se encuentra le asigno una por defecto
@@ -179,6 +182,7 @@ public class Main3Activity extends AppCompatActivity {
                 Bundle box = new Bundle();
                 box.putParcelable("pass2",conta);
                 modificar.putExtras(box);
+                modificar.putExtra(Intent.EXTRA_TEXT, pos);
                 Main3Activity.this.startActivity(modificar);
             }
         });
