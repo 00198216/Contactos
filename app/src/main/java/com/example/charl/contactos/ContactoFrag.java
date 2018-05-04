@@ -187,7 +187,7 @@ public class ContactoFrag extends Fragment {
 
                    for(int i=0; i < list2.size(); i++){
                        if(list2.get(i).getName().toLowerCase().contains(newText) ||list2.get(i).getNumero().contains(newText)){
-                           
+
                            list.add(list2.get(i));
                        }
                    }
@@ -218,7 +218,7 @@ public class ContactoFrag extends Fragment {
         while (phones.moveToNext()) {
             String Name = phones
                     .getString(phones
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                            .getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
             String Number = phones
                     .getString(phones
                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));

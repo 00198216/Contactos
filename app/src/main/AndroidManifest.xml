@@ -32,8 +32,9 @@
             android:label="Agregar contacto" />
         <activity
             android:name=".calendario"
-            android:label="Elegir fecha"></activity>
-        <activity android:name=".Main3Activity"></activity>
+            android:label="Elegir fecha" />
+        <activity android:name=".Main3Activity" />
+        <activity android:name=".Main4Activity"></activity>
     </application>
 
 </manifest>
