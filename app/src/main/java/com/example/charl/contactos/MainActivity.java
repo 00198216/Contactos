@@ -1,6 +1,7 @@
 package com.example.charl.contactos;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Application;
 import android.app.SearchManager;
 import android.content.Context;
@@ -8,12 +9,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Parcelable;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 
@@ -41,6 +45,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFragmentInteractionListener, Favoritos.OnFragmentInteractionListener {
 
     static final int REQUEST_CODE_ASK_PERMISSION = 2018;
+    public static final String TAG = "YOUR-TAG-NAME";
     int Read;
     ContactoFrag one= new ContactoFrag();
     public ContactosAdapter adapter;
@@ -48,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
     List<Contactos> lista2;
     Contactos conta;
     String pos;
+    Bundle b;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -134,19 +140,23 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
         }
     }
 
+
+
+
     @Override
     public void onResume() {
         Intent getdata = this.getIntent();
        if(getdata.getStringExtra(Intent.EXTRA_TEXT) !=null){
            Bundle bundle = getdata.getExtras();
-           conta = (Contactos) bundle.getParcelable("pass2");
+           conta = (Contactos) bundle.getParcelable("passw");
            pos= getdata.getStringExtra(Intent.EXTRA_TEXT);
+
            super.onResume();
+
        }
        else{
            super.onResume();
        }
-
 
 
     }
@@ -157,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
     public void onFragmentInteraction(Uri uri) {
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -254,4 +265,5 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
             return null;
         }
     }
+
 }

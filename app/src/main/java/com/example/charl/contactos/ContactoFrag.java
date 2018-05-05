@@ -61,13 +61,17 @@ public class ContactoFrag extends Fragment {
     private View view;
     private RecyclerView rv;
     private ContactosAdapter adapter;
+    public static final String TAG = "YOUR-TAG-NAME";
     private Uri ur;
     SearchView search;
     Contactos conta;
     String pos;
 
+
     List<Contactos> list = new ArrayList<>();
     List<Contactos> list2 = new ArrayList<>();
+
+
 
 
 
@@ -103,10 +107,7 @@ public class ContactoFrag extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
 
     }
 
@@ -127,6 +128,9 @@ public class ContactoFrag extends Fragment {
 
                 list.add(conta2);
                 list2.add(conta2);
+
+
+
 
             }
         }
@@ -239,10 +243,12 @@ public class ContactoFrag extends Fragment {
             if (image_uri != null) {
                 list.add(new Contactos(Name,Uri.parse(image_uri),Number));
                 list2.add(new Contactos(Name,Uri.parse(image_uri),Number));
+
             }
             else{
                 list.add(new Contactos(Name,imageUri,Number));
                 list2.add(new Contactos(Name,imageUri,Number));
+
             }
 
 
@@ -281,7 +287,8 @@ public class ContactoFrag extends Fragment {
     @Override
     public void onResume(){
         super.onResume();
-
+        pos = null;
+        conta = null;
         Intent getdata = getActivity().getIntent();
         if(getdata.getStringExtra(Intent.EXTRA_TEXT) !=null){
           modify();
@@ -310,14 +317,17 @@ public class ContactoFrag extends Fragment {
         pos= getinfo.getStringExtra(Intent.EXTRA_TEXT);
 
 
-        if (list2.get(parseInt(pos)) != conta) {
-            list.remove((parseInt(pos)));
-            list.add(0, conta);
-            list2.remove((parseInt(pos)));
-            list2.add(0, conta);
 
-            adapter.notifyDataSetChanged();
+
+
+        if (list2.get(parseInt(pos)) != conta) {
+            list.set(parseInt(pos), conta);
+            list2.set(parseInt(pos), conta);
+
+
+
         }
+        adapter.notifyDataSetChanged();
 
     }
 
