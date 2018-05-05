@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
     public ContactosAdapter adapter;
     List<Contactos> lista;
     List<Contactos> lista2;
+    Contactos conta;
+    String pos;
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void accessPermission(){
@@ -130,6 +133,25 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
             fragment.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+    @Override
+    public void onResume() {
+        Intent getdata = this.getIntent();
+       if(getdata.getStringExtra(Intent.EXTRA_TEXT) !=null){
+           Bundle bundle = getdata.getExtras();
+           conta = (Contactos) bundle.getParcelable("pass2");
+           pos= getdata.getStringExtra(Intent.EXTRA_TEXT);
+           super.onResume();
+       }
+       else{
+           super.onResume();
+       }
+
+
+
+    }
+
+
 
     @Override
     public void onFragmentInteraction(Uri uri) {

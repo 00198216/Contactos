@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
+import static java.lang.Integer.parseInt;
 
 
 /**
@@ -62,6 +63,8 @@ public class ContactoFrag extends Fragment {
     private ContactosAdapter adapter;
     private Uri ur;
     SearchView search;
+    Contactos conta;
+    String pos;
 
     List<Contactos> list = new ArrayList<>();
     List<Contactos> list2 = new ArrayList<>();
@@ -106,6 +109,9 @@ public class ContactoFrag extends Fragment {
         }
 
     }
+
+
+
     @TargetApi(Build.VERSION_CODES.O)
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -146,6 +152,9 @@ public class ContactoFrag extends Fragment {
         adapter= new ContactosAdapter(getContext(),getContacts());
 
         rv.setAdapter(adapter);
+
+
+
 
         SearchView search = getActivity().findViewById(R.id.search);
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -269,6 +278,17 @@ public class ContactoFrag extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        Intent getdata = getActivity().getIntent();
+        if(getdata.getStringExtra(Intent.EXTRA_TEXT) !=null){
+          modify();
+        }
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -282,6 +302,23 @@ public class ContactoFrag extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+    public void modify(){
+        Intent getinfo = getActivity().getIntent();
+        Bundle bundle = getinfo.getExtras();
+        conta = (Contactos) bundle.getParcelable("passw");
+        pos= getinfo.getStringExtra(Intent.EXTRA_TEXT);
+
+
+        if (list2.get(parseInt(pos)) != conta) {
+            list.remove((parseInt(pos)));
+            list.add(0, conta);
+            list2.remove((parseInt(pos)));
+            list2.add(0, conta);
+
+            adapter.notifyDataSetChanged();
+        }
+
     }
 
 }

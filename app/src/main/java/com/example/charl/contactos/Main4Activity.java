@@ -47,6 +47,7 @@ public class Main4Activity extends AppCompatActivity {
     Uri imgp;
     Bitmap bitmap;
     String data = "No disponible";
+    String pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +64,11 @@ public class Main4Activity extends AppCompatActivity {
         mail= (EditText) findViewById(R.id.editmail);
         boton= (Button) findViewById(R.id.clicker);
 
+
         Intent getinfo = this.getIntent();
         Bundle bundle = getinfo.getExtras();
         conta = (Contactos) bundle.getParcelable("pass2");
+        pos= getinfo.getStringExtra(Intent.EXTRA_TEXT);
 
         imgv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +91,42 @@ public class Main4Activity extends AppCompatActivity {
 
             }
         });
+
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!adress.getText().toString().isEmpty() &&!name.getText().toString().isEmpty() && !Lname.getText().toString().isEmpty()&& !phone.getText().toString().isEmpty()&& !Id.getText().toString().isEmpty()&& !calen.getText().toString().isEmpty() && !mail.getText().toString().isEmpty()) {
+                    if (imgu != null) {
+                        if(imgp != null) {
+                            Contactos ctc = new Contactos(name.getText().toString(), Lname.getText().toString(), phone.getText().toString(), Id.getText().toString(), imgp, calen.getText().toString(), mail.getText().toString(),adress.getText().toString());
+                            Intent sendIntent = new Intent(getApplicationContext(), MainActivity.class);
+                            Bundle caja =new Bundle();
+                            caja.putParcelable("passw",ctc);
+                            sendIntent.putExtras(caja);
+                            sendIntent.putExtra(Intent.EXTRA_TEXT,pos);
+                            Main4Activity.this.startActivity(sendIntent);
+                        }
+                        else {
+                            Toast toast3 =
+                                    Toast.makeText(getApplicationContext(),
+                                            "path null", Toast.LENGTH_SHORT);
+                            toast3.show();}
+                    }
+
+                    else{ Toast toast2 =
+                            Toast.makeText(getApplicationContext(),
+                                    "Agregar Imagen", Toast.LENGTH_SHORT);
+                        toast2.show();}
+                }
+                else{
+                    Toast toast1 =
+                            Toast.makeText(getApplicationContext(),
+                                    "Terminar de llenar los datos", Toast.LENGTH_SHORT);
+                    toast1.show();
+                }
+            }
+        });
+
 
         //Reviso si la imagen esta vacia. Si no se encuentra le asigno una por defecto
         if (conta.getImgconv() == null) {
