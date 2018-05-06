@@ -65,26 +65,7 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
         }
 
     }
-    @Override
-    public void onRequestPermissionsResult(int requestCode,String[] permissions, int[ ] grantResults){
-        switch(requestCode){
-            case REQUEST_CODE_ASK_PERMISSION:
-                if(grantResults[0] ==PackageManager.PERMISSION_GRANTED){
 
-                    Toast t= Toast.makeText(getApplicationContext(),"Permiso autorizado",Toast.LENGTH_SHORT);
-                    t.show();
-                }
-                else{
-
-                   Toast t2 =Toast.makeText(getApplicationContext(),"Permiso denegado",Toast.LENGTH_SHORT);
-                   t2.show();
-                }
-                break;
-
-            default:
-                super.onRequestPermissionsResult(requestCode,permissions,grantResults);
-        }
-    }
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -100,36 +81,45 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-        accessPermission();
 
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        Read = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS);
 
-        //preparing the viewpager
-        mViewPager = findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        if (Read != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_CODE_ASK_PERMISSION);
+            recreate();
 
-        TabLayout tabLayout = findViewById(R.id.tabs);
+        }
+        else{
+            mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+            //preparing the viewpager
+            mViewPager = findViewById(R.id.container);
+            mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            TabLayout tabLayout = findViewById(R.id.tabs);
 
-                Intent getInfo= new Intent(getApplicationContext(),Main2Activity.class);
-                startActivityForResult(getInfo, 2);
+            mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+            tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+            FloatingActionButton fab = findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent getInfo = new Intent(getApplicationContext(), Main2Activity.class);
+                    startActivityForResult(getInfo, 2);
 
 
-            }
-        });
-
+                }
+            });
+        }
 
 
     }
+
 
 
 
@@ -218,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
             return fragment;
 
         }
+
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
