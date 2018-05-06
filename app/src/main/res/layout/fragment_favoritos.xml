@@ -2,12 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/Favor"
     tools:context=".Favoritos">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- TODO: Recycler View de Favoritos-->
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler2"
+        android:scrollbars="vertical">
+
+    </android.support.v7.widget.RecyclerView>
+
 
 </FrameLayout>

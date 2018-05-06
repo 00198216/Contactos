@@ -1,12 +1,28 @@
 package com.example.charl.contactos;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +33,16 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Favoritos extends Fragment {
+    RecyclerView rv;
+    ContactosAdapter adapter;
+    List<Contactos> series;
+    List<Contactos> series2;
+    GridLayoutManager lManager;
+    Bundle bundle1;
+    Iterator iterator;
+
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -63,14 +89,106 @@ public class Favoritos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favoritos, container, false);
-    }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        View vista=inflater.inflate(R.layout.fragment_favoritos, container, false);
+
+        rv =  vista.findViewById(R.id.recycler2);
+        GridLayoutManager gManager = new GridLayoutManager(getContext(),3);
+
+        RecyclerView.LayoutManager lManager = gManager;
+
+        rv.setLayoutManager(lManager);
+
+        series= new ArrayList<>();
+        series2= new ArrayList<>();
+
+        rv.setLayoutManager(lManager);
+
+        bundle1 = getArguments();
+
+        adapter= new ContactosAdapter(getContext(),series){
+
+            @Override
+            public void onVerClick(View v, int pos) {
+
+            }
+
+            @Override
+            public void Contador(int cont) {
+
+            }
+        };
+
+              if( bundle1 != null){
+
+                  Toast.makeText(getActivity(), "This is my Toast message!",
+                          Toast.LENGTH_LONG).show();
+
+
+
+            }
+
+
+
+
+        rv.setAdapter(adapter);
+
+
+
+
+        SearchView search = getActivity().findViewById(R.id.search);
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                series.clear();
+                query = query.toLowerCase();
+
+                for(int i=0; i < series2.size(); i++){
+                    if(series2.get(i).getName().toLowerCase().contains(query) ||series2.get(i).getNumero().contains(query) ){
+                        series.add(series2.get(i));
+                    }
+                }
+
+                adapter.notifyDataSetChanged();
+                return true;
+
+
+            }
+
+
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                series.clear();
+
+                if(newText.length() ==0) {
+                    series.addAll(series2);
+                    adapter.notifyDataSetChanged();
+                }
+
+                else {
+
+                    newText = newText.toLowerCase();
+
+                    for(int i=0; i < series2.size(); i++){
+                        if(series2.get(i).getName().toLowerCase().contains(newText) ||series2.get(i).getNumero().contains(newText)){
+
+                            series.add(series2.get(i));
+                        }
+                    }
+
+                    adapter.notifyDataSetChanged();
+                    return true;
+                }
+
+                return true;
+            }
+        });
+
+       return vista;
     }
 
     @Override

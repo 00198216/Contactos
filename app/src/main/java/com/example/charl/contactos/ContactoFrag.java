@@ -61,15 +61,16 @@ public class ContactoFrag extends Fragment {
     private View view;
     private RecyclerView rv;
     private ContactosAdapter adapter;
-    public static final String TAG = "YOUR-TAG-NAME";
     private Uri ur;
     SearchView search;
     Contactos conta;
     String pos;
+    Bundle bundle1 = new Bundle();
 
 
     List<Contactos> list = new ArrayList<>();
     List<Contactos> list2 = new ArrayList<>();
+    List<Contactos> list3 = new ArrayList<>();
 
 
 
@@ -112,7 +113,6 @@ public class ContactoFrag extends Fragment {
     }
 
 
-
     @TargetApi(Build.VERSION_CODES.O)
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -132,10 +132,16 @@ public class ContactoFrag extends Fragment {
 
 
 
+
+
             }
         }
         adapter.notifyDataSetChanged();
     }
+
+
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -153,9 +159,36 @@ public class ContactoFrag extends Fragment {
 
         rv.setLayoutManager(lManager);
 
-        adapter= new ContactosAdapter(getContext(),getContacts());
+        adapter= new ContactosAdapter(getContext(),getContacts()){
+
+                @Override
+                public void onVerClick(View v, int pos){
+
+                if (list.get(pos).getCheck()) {
+
+                    Favoritos frag = new Favoritos();
+
+                    Bundle bundle = new Bundle();
+                    list3.add(list.get(pos));
+                    bundle.putParcelable("Pass", list3.get(pos));
+
+                    frag.setArguments(bundle);
+                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.Favor, frag);
+                    ft.commit();
+                }
+            }
+                public void Contador(int cont){
+
+            }
+
+
+            };
+
 
         rv.setAdapter(adapter);
+
+
 
 
 
@@ -244,11 +277,11 @@ public class ContactoFrag extends Fragment {
                 list.add(new Contactos(Name,Uri.parse(image_uri),Number));
                 list2.add(new Contactos(Name,Uri.parse(image_uri),Number));
 
+
             }
             else{
                 list.add(new Contactos(Name,imageUri,Number));
                 list2.add(new Contactos(Name,imageUri,Number));
-
             }
 
 
@@ -284,6 +317,7 @@ public class ContactoFrag extends Fragment {
         mListener = null;
     }
 
+
     @Override
     public void onResume(){
         super.onResume();
@@ -295,6 +329,7 @@ public class ContactoFrag extends Fragment {
         }
 
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
@@ -318,12 +353,9 @@ public class ContactoFrag extends Fragment {
 
 
 
-
-
         if (list2.get(parseInt(pos)) != conta) {
             list.set(parseInt(pos), conta);
             list2.set(parseInt(pos), conta);
-
 
 
         }
