@@ -35,11 +35,12 @@ import static android.app.Activity.RESULT_OK;
 public class Favoritos extends Fragment {
     RecyclerView rv;
     ContactosAdapter adapter;
-    List<Contactos> series;
-    List<Contactos> series2;
+    ArrayList<Contactos> series;
+    ArrayList<Contactos> series2;
     GridLayoutManager lManager;
     Bundle bundle1;
     Iterator iterator;
+    Contactos conta;
 
 
 
@@ -97,7 +98,7 @@ public class Favoritos extends Fragment {
 
         RecyclerView.LayoutManager lManager = gManager;
 
-        rv.setLayoutManager(lManager);
+        rv.setLayoutManager(gManager);
 
         series= new ArrayList<>();
         series2= new ArrayList<>();
@@ -105,6 +106,7 @@ public class Favoritos extends Fragment {
         rv.setLayoutManager(lManager);
 
         bundle1 = getArguments();
+
 
         adapter= new ContactosAdapter(getContext(),series){
 
@@ -121,10 +123,31 @@ public class Favoritos extends Fragment {
 
               if( bundle1 != null){
 
-                  Toast.makeText(getActivity(), "This is my Toast message!",
-                          Toast.LENGTH_LONG).show();
+                int cont=0;
+
+                 conta= (Contactos) bundle1.getParcelable("Pass");
+
+                 series2.add(conta);
+                  iterator=series2.listIterator();
 
 
+                  while(iterator.hasNext()){
+                      conta= (Contactos) iterator.next();
+                      series.add(cont,conta);
+                      int i=0;
+                      for (i = 0; i < cont; ++i) {
+                          if(series2.get(i)==series2.get(cont)){
+                              series2.remove(i);
+                              series.remove(i);
+                              break;
+                          }
+                      }
+                      adapter.notifyItemInserted(cont);
+                      adapter.notifyItemRangeChanged(cont,series2.size());
+
+                      cont++;
+
+                  }
 
             }
 

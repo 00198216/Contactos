@@ -162,25 +162,29 @@ public class ContactoFrag extends Fragment {
         adapter= new ContactosAdapter(getContext(),getContacts()){
 
                 @Override
-                public void onVerClick(View v, int pos){
+                public void onVerClick(View v, int pos) {
 
-                if (list.get(pos).getCheck()) {
+                    if (list2 != null) {
 
-                    Favoritos frag = new Favoritos();
+                        if (list2.get(pos).getCheck()) {
 
-                    Bundle bundle = new Bundle();
-                    list3.add(list.get(pos));
-                    bundle.putParcelable("Pass", list3.get(pos));
+                            Favoritos frag = new Favoritos();
 
-                    frag.setArguments(bundle);
-                    final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.Favor, frag);
-                    ft.commit();
+                            Bundle bundle = new Bundle();
+                            list3.add(list2.get(pos));
+                            bundle.putParcelable("Pass", list2.get(pos));
+
+                            frag.setArguments(bundle);
+                            final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            ft.replace(R.id.Favor, frag);
+                            ft.commit();
+                        }
+                    }
                 }
-            }
-                public void Contador(int cont){
 
-            }
+                    public void Contador ( int cont){
+
+                    }
 
 
             };
@@ -287,7 +291,7 @@ public class ContactoFrag extends Fragment {
 
         }
 
-        return list;
+        return list2;
 
     }
 
