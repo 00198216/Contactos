@@ -27,12 +27,12 @@ public abstract class ContactosAdapter extends RecyclerView.Adapter<ContactosAda
 
     private Context Ctx;
     private LayoutInflater inflater;
-    public List<Contactos> contactL;
-    public List<Contactos> contactS;
+    public ArrayList<Contactos> contactL;
+    public ArrayList<Contactos> contactS;
     public int contador=0;
 
 
-    public ContactosAdapter(Context Context, List<Contactos> contact) {
+    public ContactosAdapter(Context Context, ArrayList<Contactos> contact) {
 
         contactL = contact;
         Ctx = Context;

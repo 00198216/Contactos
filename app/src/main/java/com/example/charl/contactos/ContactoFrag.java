@@ -68,9 +68,9 @@ public class ContactoFrag extends Fragment {
     Bundle bundle1 = new Bundle();
 
 
-    List<Contactos> list = new ArrayList<>();
-    List<Contactos> list2 = new ArrayList<>();
-    List<Contactos> list3 = new ArrayList<>();
+    ArrayList<Contactos> list = new ArrayList<>();
+    ArrayList<Contactos> list2 = new ArrayList<>();
+    ArrayList<Contactos> list3 = new ArrayList<>();
 
 
 
@@ -159,7 +159,7 @@ public class ContactoFrag extends Fragment {
 
         rv.setLayoutManager(lManager);
 
-        adapter= new ContactosAdapter(getContext(),getContacts()){
+        adapter= new ContactosAdapter(getContext(), (ArrayList<Contactos>) getContacts()){
 
                 @Override
                 public void onVerClick(View v, int pos) {
@@ -172,7 +172,7 @@ public class ContactoFrag extends Fragment {
 
                             Bundle bundle = new Bundle();
                             list3.add(list2.get(pos));
-                            bundle.putParcelable("Pass", list2.get(pos));
+                            bundle.putParcelableArrayList("Pass", list3);
 
                             frag.setArguments(bundle);
                             final FragmentTransaction ft = getFragmentManager().beginTransaction();

@@ -125,9 +125,7 @@ public class Favoritos extends Fragment {
 
                 int cont=0;
 
-                 conta= (Contactos) bundle1.getParcelable("Pass");
-
-                 series2.add(conta);
+                  series2=  bundle1.getParcelableArrayList("Pass");
                   iterator=series2.listIterator();
 
 

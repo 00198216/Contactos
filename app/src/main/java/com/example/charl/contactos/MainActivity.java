@@ -40,6 +40,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFragmentInteractionListener, Favoritos.OnFragmentInteractionListener {
@@ -49,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements ContactoFrag.OnFr
     int Read;
     ContactoFrag one= new ContactoFrag();
     public ContactosAdapter adapter;
-    List<Contactos> lista;
-    List<Contactos> lista2;
+    ArrayList<Contactos> lista;
+    ArrayList<Contactos> lista2;
     Contactos conta;
     String pos;
     Bundle b;
