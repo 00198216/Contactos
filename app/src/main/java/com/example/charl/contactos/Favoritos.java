@@ -34,7 +34,7 @@ import static android.app.Activity.RESULT_OK;
  */
 public class Favoritos extends Fragment {
     RecyclerView rv;
-    ContactosAdapter adapter;
+    ContactosAdapter2 adapter;
     ArrayList<Contactos> series;
     ArrayList<Contactos> series2;
     GridLayoutManager lManager;
@@ -108,7 +108,7 @@ public class Favoritos extends Fragment {
         bundle1 = getArguments();
 
 
-        adapter= new ContactosAdapter(getContext(),series){
+        adapter= new ContactosAdapter2(getContext(),series){
 
             @Override
             public void onVerClick(View v, int pos) {
