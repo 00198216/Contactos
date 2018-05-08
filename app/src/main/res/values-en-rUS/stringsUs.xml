@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Contacts</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="buscar_contacto">Search Contacts</string>
+    <string name="contactos">Contacts</string>
+    <string name="favoritos">Favorites</string>
+    <string name="name">name</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_add_contactos">add_contacts</string>
+    <string name="nuevo_contacto">NewContacts</string>
+    <string name="nombre">name:</string>
+    <string name="nombre1">Name</string>
+    <string name="nombre_del_contacto">Contacts Name</string>
+    <string name="apellido">Last Name</string>
+    <string name="apellido_del_contacto">Contacts last name</string>
+    <string name="nombre2">Name:</string>
+    <string name="apellido1">Last Name:</string>
+    <string name="id_del_contacto">Contacts ID</string>
+    <string name="id">ID:</string>
+    <string name="correo">Email:</string>
+    <string name="correo_del_contacto">Contacts Email</string>
+    <string name="direccion">Address:</string>
+    <string name="direccion_del_contacto">Contacts Address</string>
+    <string name="cumplea_os">Birthday:</string>
+    <string name="cumpleanos">Birthday</string>
+    <string name="agregar_contacto">Add Contacts</string>
+    <string name="imagen">Image</string>
+    <string name="foto">Image</string>
+    <string name="telefono">Phone</string>
+    <string name="elegir_imagen">Choose Photo:</string>
+    <string name="telefonos">Phone</string>
+    <string name="telefonos2">Phones:</string>
+    <string name="search">search</string>
+    <string name="modificar_contacto">Modify Contact</string>
+</resources>

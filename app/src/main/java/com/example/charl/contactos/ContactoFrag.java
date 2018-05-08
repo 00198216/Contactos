@@ -384,10 +384,10 @@ public class ContactoFrag extends Fragment {
         if (list2.get(parseInt(pos)) != conta) {
             list.set(parseInt(pos), conta);
             list2.set(parseInt(pos), conta);
-
+            adapter.notifyDataSetChanged();
 
         }
-        adapter.notifyDataSetChanged();
+
 
     }
 
