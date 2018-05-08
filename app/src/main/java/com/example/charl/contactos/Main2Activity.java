@@ -59,8 +59,12 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
     Bitmap bitmap;
     Tag tag;
 
+    @State String calen1;
+
+
     @Override public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        calen1 = calen.getText().toString();
         Icepick.saveInstanceState(this, outState);
 
     }
@@ -80,8 +84,16 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
         mail= (EditText) findViewById(R.id.five);
         boton= (Button) findViewById(R.id.Button);
 
+
+
+
+
+
+
         Icepick.restoreInstanceState(this,savedInstanceState);
         imgv.setImageURI(imgp);
+        calen.setText(calen1);
+
 
 
 

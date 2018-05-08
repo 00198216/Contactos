@@ -28,11 +28,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 
+import icepick.Icepick;
+import icepick.State;
+
 public class Main4Activity extends AppCompatActivity {
 
     private static final int PICK_IMAGE = 101;
 
-    Uri imgu;
+    @State Uri imgu;
 
     EditText name;
     Contactos conta;
@@ -44,10 +47,19 @@ public class Main4Activity extends AppCompatActivity {
     ImageView imgv;
     Button boton;
     EditText mail;
-    Uri imgp;
+    @State Uri imgp;
     Bitmap bitmap;
     String data = "No disponible";
     String pos;
+    @State String calen1;
+
+    @Override public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        calen1 = calen.getText().toString();
+        Icepick.saveInstanceState(this, outState);
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +75,11 @@ public class Main4Activity extends AppCompatActivity {
         calen= (TextView) findViewById(R.id.editcal);
         mail= (EditText) findViewById(R.id.editmail);
         boton= (Button) findViewById(R.id.clicker);
+
+        Icepick.restoreInstanceState(this,savedInstanceState);
+        imgv.setImageURI(imgp);
+        calen.setText(calen1);
+
 
 
         Intent getinfo = this.getIntent();
