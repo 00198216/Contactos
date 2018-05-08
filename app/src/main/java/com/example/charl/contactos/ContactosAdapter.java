@@ -22,6 +22,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import icepick.Icepick;
+import icepick.State;
+
 public abstract class ContactosAdapter extends RecyclerView.Adapter<ContactosAdapter.ViewHolder> {
 
 
@@ -30,6 +33,9 @@ public abstract class ContactosAdapter extends RecyclerView.Adapter<ContactosAda
     public List<Contactos> contactL;
     public List<Contactos> contactS;
     public int contador=0;
+
+
+
 
 
     public ContactosAdapter(Context Context, List<Contactos> contact) {
@@ -41,6 +47,7 @@ public abstract class ContactosAdapter extends RecyclerView.Adapter<ContactosAda
 
     }
 
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,6 +56,8 @@ public abstract class ContactosAdapter extends RecyclerView.Adapter<ContactosAda
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
@@ -136,7 +145,7 @@ public abstract class ContactosAdapter extends RecyclerView.Adapter<ContactosAda
 
         holder.delete.setOnClickListener(new View.OnClickListener(){
 
-        //ELLA NO TE AMA
+
             @Override
             public void onClick(View view){
                 contactL.remove(position);

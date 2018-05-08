@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#000">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -50,9 +51,12 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_width="450dp"
+        android:layout_height="329dp"
+        android:layout_marginBottom="40dp"
+        android:layout_gravity="center_horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:layout_editor_absoluteY="89dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
