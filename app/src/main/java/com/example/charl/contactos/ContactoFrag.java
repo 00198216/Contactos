@@ -164,14 +164,14 @@ public class ContactoFrag extends Fragment {
             @Override
             public void onVerClick(View v, int pos) {
 
-                if (list != null) {
+                if (list2 != null) {
 
-                    if (list.get(pos).getCheck()) {
+                    if (list2.get(pos).getCheck()) {
 
                         Favoritos frag = new Favoritos();
 
                         Bundle bundle = new Bundle();
-                        list3.add(list.get(pos));
+                        list3.add(list2.get(pos));
                         bundle.putParcelableArrayList("Pass", list3);
 
                         frag.setArguments(bundle);
@@ -257,39 +257,46 @@ public class ContactoFrag extends Fragment {
                 "://" + getResources().getResourcePackageName(R.drawable.perfil)
                 + '/' + getResources().getResourceTypeName(R.drawable.perfil) + '/' + getResources().getResourceEntryName(R.drawable.perfil) );
 
-        Cursor phones = getContext().getContentResolver().query(
-                ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null,
-                null, null);
-        while (phones.moveToNext()) {
-            String Name = phones
-                    .getString(phones
-                            .getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-            String Number = phones
-                    .getString(phones
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-
-            String image_uri = phones
-                    .getString(phones
-                            .getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
+        Cursor cursor= getContext().getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null, null
+                , null,ContactsContract.Contacts.DISPLAY_NAME+" ASC");
+        while(cursor.moveToNext()) {
+            Contactos x = new Contactos("", "", "", "",imageUri, "","","" );
+            String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+            String apellido = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_ALTERNATIVE));
+            String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+            String ad = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_SOURCE));
+            x.setName(name);
+            x.setLname(apellido);
+            x.setID(id);
+            x.setAdress(ad);
 
 
-            if (image_uri != null) {
-                list.add(new Contactos(Name,Uri.parse(image_uri),Number));
-                list2.add(new Contactos(Name,Uri.parse(image_uri),Number));
-
-
+            Cursor phone = getContext().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI
+                    ,null,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+id,null,null);
+            String phon;
+            while (phone.moveToNext()){
+                phon=phone.getString(phone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                if(phone.getString(phone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI))==null){
+                    x.setImgconv(imageUri);
+                }else{
+                    x.setImgconv(Uri.parse(phone
+                            .getString(phone
+                                    .getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI))));
+                }
+                x.setNumero(phon);
             }
-            else{
-                list.add(new Contactos(Name,imageUri,Number));
-                list2.add(new Contactos(Name,imageUri,Number));
-            }
+            phone.close();
 
 
-        }
+            list.add(x);
+            list2.add(x);
+        }                                                                                                                  
+
+
 
         return list;
-
     }
+
 
 
     public void onButtonPressed(Uri uri) {
