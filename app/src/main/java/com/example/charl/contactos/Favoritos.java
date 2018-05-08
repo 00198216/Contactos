@@ -1,28 +1,19 @@
 package com.example.charl.contactos;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
+import com.example.charl.contactos.R;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -121,33 +112,34 @@ public class Favoritos extends Fragment {
             }
         };
 
-              if( bundle1 != null){
+        if( bundle1 != null){
 
-                int cont=0;
+            int cont=0;
 
-                  series2=  bundle1.getParcelableArrayList("Pass");
-                  iterator=series2.listIterator();
+            series2=  bundle1.getParcelableArrayList("Pass");
+            iterator=series2.listIterator();
 
 
-                  while(iterator.hasNext()){
-                      conta= (Contactos) iterator.next();
-                      series.add(cont,conta);
-                      int i=0;
-                      for (i = 0; i < cont; ++i) {
-                          if(series2.get(i)==series2.get(cont)){
-                              series2.remove(i);
-                              series.remove(i);
-                              break;
-                          }
-                      }
-                      adapter.notifyItemInserted(cont);
-                      adapter.notifyItemRangeChanged(cont,series2.size());
+            while(iterator.hasNext()){
+                conta= (Contactos) iterator.next();
+                series.add(cont,conta);
+                int i=0;
+                for (i = 0; i < cont; ++i) {
+                    if(series2.get(i)==series2.get(cont)){
+                        series2.remove(i);
+                        series.remove(i);
+                        break;
+                    }
+                }
+                adapter.notifyItemInserted(cont);
+                adapter.notifyItemRangeChanged(cont,series2.size());
 
-                      cont++;
-
-                  }
+                cont++;
 
             }
+
+        }
+
 
 
 
@@ -157,7 +149,9 @@ public class Favoritos extends Fragment {
 
 
 
-       return vista;
+
+
+        return vista;
     }
 
     @Override

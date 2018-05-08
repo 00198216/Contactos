@@ -2,10 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/Favor"
-    tools:context=".Favoritos"
-    android:background="#000">
+    tools:context="com.example.charl.contactos.Favoritos"
+    android:background="#000"
+    android:id="@+id/Favor">
 
+    <!-- TODO: Update blank fragment layout -->
     <!-- TODO: Recycler View de Favoritos-->
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -15,6 +16,5 @@
         android:scrollbars="vertical">
 
     </android.support.v7.widget.RecyclerView>
-
 
 </FrameLayout>

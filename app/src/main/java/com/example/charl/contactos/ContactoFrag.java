@@ -62,7 +62,6 @@ public class ContactoFrag extends Fragment {
     private RecyclerView rv;
     private ContactosAdapter adapter;
     private Uri ur;
-    SearchView search;
     Contactos conta;
     String pos;
     Bundle bundle1 = new Bundle();
@@ -121,7 +120,7 @@ public class ContactoFrag extends Fragment {
 
             if(data.hasExtra("Name")==true){
 
-               Contactos conta = (Contactos)data.getExtras().getParcelable("Name");
+                Contactos conta = (Contactos)data.getExtras().getParcelable("Name");
 
                 Contactos conta2 =new Contactos(conta.getName(),conta.getLname(),conta.getNumero(),conta.getID(),conta.getImgconv(),conta.getCumple(),conta.getMail(),conta.getAdress());
 
@@ -150,55 +149,51 @@ public class ContactoFrag extends Fragment {
 
         //Preparing the layout for ContactoFragment
 
-        view= inflater.inflate(R.layout.fragment_contacto, container, false);
+        view = inflater.inflate(R.layout.fragment_contacto, container, false);
 
-        rv =  view.findViewById(R.id.recycler);
-        GridLayoutManager gManager = new GridLayoutManager(getContext(),3);
+        rv = view.findViewById(R.id.recycler);
+        GridLayoutManager gManager = new GridLayoutManager(getContext(), 3);
 
         RecyclerView.LayoutManager lManager = gManager;
 
         rv.setLayoutManager(lManager);
 
-        adapter= new ContactosAdapter(getContext(), (ArrayList<Contactos>) getContacts()){
 
-                @Override
-                public void onVerClick(View v, int pos) {
+        adapter = new ContactosAdapter(getContext(),  getContacts()) {
 
-                    if (list2 != null) {
+            @Override
+            public void onVerClick(View v, int pos) {
 
-                        if (list2.get(pos).getCheck()) {
+                if (list != null) {
 
-                            Favoritos frag = new Favoritos();
+                    if (list.get(pos).getCheck()) {
 
-                            Bundle bundle = new Bundle();
-                            list3.add(list2.get(pos));
-                            bundle.putParcelableArrayList("Pass", list3);
+                        Favoritos frag = new Favoritos();
 
-                            frag.setArguments(bundle);
-                            final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                            ft.replace(R.id.Favor, frag);
-                            ft.commit();
-                        }
+                        Bundle bundle = new Bundle();
+                        list3.add(list.get(pos));
+                        bundle.putParcelableArrayList("Pass", list3);
+
+                        frag.setArguments(bundle);
+                        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.Favor, frag);
+                        ft.commitAllowingStateLoss();
                     }
                 }
+            }
 
-                    public void Contador ( int cont){
+            public void Contador(int cont) {
 
-                    }
+            }
 
 
-            };
+        };
 
 
         rv.setAdapter(adapter);
 
-
-
-
-
-
-        SearchView search = getActivity().findViewById(R.id.search);
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        SearchView look = getActivity().findViewById(R.id.search);
+        look.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -216,7 +211,7 @@ public class ContactoFrag extends Fragment {
                 return true;
 
 
-        }
+            }
 
 
 
@@ -225,33 +220,34 @@ public class ContactoFrag extends Fragment {
 
                 list.clear();
 
-               if(newText.length() ==0) {
-                  list.addAll(list2);
-                   adapter.notifyDataSetChanged();
-               }
+                if(newText.length() ==0) {
+                    list.addAll(list2);
+                    adapter.notifyDataSetChanged();
+                }
 
-               else {
+                else {
 
-                   newText = newText.toLowerCase();
+                    newText = newText.toLowerCase();
 
-                   for(int i=0; i < list2.size(); i++){
-                       if(list2.get(i).getName().toLowerCase().contains(newText) ||list2.get(i).getNumero().contains(newText)){
+                    for(int i=0; i < list2.size(); i++){
+                        if(list2.get(i).getName().toLowerCase().contains(newText) ||list2.get(i).getNumero().contains(newText)){
 
-                           list.add(list2.get(i));
-                       }
-                   }
+                            list.add(list2.get(i));
+                        }
+                    }
 
-                   adapter.notifyDataSetChanged();
-                   return true;
-               }
+                    adapter.notifyDataSetChanged();
+                    return true;
+                }
 
-               return true;
+                return true;
             }
         });
 
 
-
         return view;
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -291,7 +287,7 @@ public class ContactoFrag extends Fragment {
 
         }
 
-        return list2;
+        return list;
 
     }
 
@@ -329,7 +325,7 @@ public class ContactoFrag extends Fragment {
         conta = null;
         Intent getdata = getActivity().getIntent();
         if(getdata.getStringExtra(Intent.EXTRA_TEXT) !=null){
-          modify();
+            modify();
         }
 
     }
@@ -368,3 +364,5 @@ public class ContactoFrag extends Fragment {
     }
 
 }
+
+
