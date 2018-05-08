@@ -136,7 +136,7 @@ public abstract class ContactosAdapter extends RecyclerView.Adapter<ContactosAda
 
         holder.delete.setOnClickListener(new View.OnClickListener(){
 
-
+        //ELLA NO TE AMA
             @Override
             public void onClick(View view){
                 contactL.remove(position);
