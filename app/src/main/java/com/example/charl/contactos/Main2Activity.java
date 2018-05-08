@@ -36,11 +36,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import icepick.Icepick;
+import icepick.State;
+
 public class Main2Activity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     private static final int PICK_IMAGE = 100;
 
-    Uri imgu;
+    @State Uri imgu;
 
     EditText name;
     EditText Lname;
@@ -52,9 +55,15 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
     Button boton;
     EditText mail;
     File imageFile;
-    Uri imgp;
+    @State Uri imgp;
     Bitmap bitmap;
     Tag tag;
+
+    @Override public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +79,11 @@ public class Main2Activity extends AppCompatActivity implements ActivityCompat.O
         calen= (TextView) findViewById(R.id.cal);
         mail= (EditText) findViewById(R.id.five);
         boton= (Button) findViewById(R.id.Button);
+
+        Icepick.restoreInstanceState(this,savedInstanceState);
+        imgv.setImageURI(imgp);
+
+
 
         imgv.setOnClickListener(new View.OnClickListener() {
             @Override
