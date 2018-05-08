@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.charl.contactos.Main4Activity"
+    android:background="#000000"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="36sp"
+        android:gravity="center"
+        android:text="@string/modificar_contacto"
+        android:textColor="#FFFFFF"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="#7B1FA2"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="@string/nombre2"
+            android:layout_marginLeft="5dp"
+            android:textColor="#FFFFFF"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="22sp"
+            android:hint="@string/nombre_del_contacto"
+            android:textColorHint="#FFFF"
+            android:textColor="#FFFFFF"
+            android:maxLength="17"
+            android:inputType="text"
+            android:id="@+id/editname" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/apellido1"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/editapellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:hint="@string/apellido_del_contacto"
+            android:inputType="text"
+            android:maxLength="17"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFF"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="@string/telefonos2"
+            android:layout_marginLeft="5dp"
+            android:textColor="#FFFFFF"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="22sp"
+            android:hint="@string/telefonos"
+            android:textColorHint="#FFFF"
+            android:textColor="#FFFFFF"
+            android:maxLength="20"
+            android:inputType="phone"
+            android:id="@+id/edittel"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="@string/id"
+            android:layout_marginLeft="5dp"
+            android:textColor="#FFFFFF"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="22sp"
+            android:hint="@string/id_del_contacto"
+            android:textColorHint="#FFFF"
+            android:textColor="#FFFFFF"
+            android:maxLength="13"
+            android:inputType="number"
+            android:id="@+id/editid"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="@string/correo"
+            android:layout_marginLeft="5dp"
+            android:textColor="#FFFFFF"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="22sp"
+            android:hint="@string/correo_del_contacto"
+            android:textColorHint="#FFFF"
+            android:textColor="#FFFFFF"
+            android:maxLength="24"
+            android:inputType="textEmailAddress"
+            android:id="@+id/editmail"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="@string/direccion"
+            android:layout_marginLeft="5dp"
+            android:textColor="#FFFFFF"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="22sp"
+            android:hint="@string/direccion_del_contacto"
+            android:textColorHint="#FFFF"
+            android:textColor="#FFFFFF"
+            android:maxLength="25"
+            android:inputType="text"
+            android:id="@+id/editad"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="@string/cumplea_os"
+            android:layout_marginLeft="5dp"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textSize="22sp"
+            android:hint="@string/cumpleanos"
+            android:textColorHint="#FFFF"
+            android:textColor="#FFFFFF"
+            android:id="@+id/editcal"/>
+
+    </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="10dp"
+                android:background="#000">
+
+            </View>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/elegir_imagen"
+            android:textColor="#FFFFFF"
+            android:layout_weight="1"
+            android:textSize="22sp" />
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/editimg"
+            android:background="#000"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/perfil"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="8dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/modificar_contacto"
+        android:layout_gravity="center"
+        android:id="@+id/clicker"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -290,7 +290,7 @@ public class ContactoFrag extends Fragment {
 
             list.add(x);
             list2.add(x);
-        }                                                                                                                  
+        }
 
 
 
