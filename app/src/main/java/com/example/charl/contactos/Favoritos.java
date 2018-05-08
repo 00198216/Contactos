@@ -151,63 +151,11 @@ public class Favoritos extends Fragment {
 
 
 
-
         rv.setAdapter(adapter);
 
 
 
 
-        SearchView search = getActivity().findViewById(R.id.search);
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                series.clear();
-                query = query.toLowerCase();
-
-                for(int i=0; i < series2.size(); i++){
-                    if(series2.get(i).getName().toLowerCase().contains(query) ||series2.get(i).getNumero().contains(query) ){
-                        series.add(series2.get(i));
-                    }
-                }
-
-                adapter.notifyDataSetChanged();
-                return true;
-
-
-            }
-
-
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                series.clear();
-
-                if(newText.length() ==0) {
-                    series.addAll(series2);
-                    adapter.notifyDataSetChanged();
-                }
-
-                else {
-
-                    newText = newText.toLowerCase();
-
-                    for(int i=0; i < series2.size(); i++){
-                        if(series2.get(i).getName().toLowerCase().contains(newText) ||series2.get(i).getNumero().contains(newText)){
-
-                            series.add(series2.get(i));
-                        }
-                    }
-
-                    adapter.notifyDataSetChanged();
-                    return true;
-                }
-
-                return true;
-            }
-        });
 
        return vista;
     }

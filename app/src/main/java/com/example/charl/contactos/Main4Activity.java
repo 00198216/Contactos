@@ -109,7 +109,7 @@ public class Main4Activity extends AppCompatActivity {
                         else {
                             Toast toast3 =
                                     Toast.makeText(getApplicationContext(),
-                                            "path null", Toast.LENGTH_SHORT);
+                                            "permiso aceptado. volver a elegir la imagen", Toast.LENGTH_SHORT);
                             toast3.show();}
                     }
 
