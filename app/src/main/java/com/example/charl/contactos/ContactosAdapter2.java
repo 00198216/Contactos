@@ -101,30 +101,15 @@ public abstract class ContactosAdapter2 extends RecyclerView.Adapter<ContactosAd
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
 
-                contactL.get(position).setCheck(isChecked);
-                onVerClick(buttonView,position);
-                Contador(contador);
+                contactL.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position,contactL.size());
+                notifyDataSetChanged();
+
 
             }
         });
 
-        holder.button.setOnClickListener(new View.OnClickListener(){
-            int state;
-
-            @Override
-            public void onClick(View view){
-                if(validar(state)) {
-                    Toast.makeText(view.getContext(), "Agrego " + contactL.get(position).getName() + " a favoritos", Toast.LENGTH_LONG).show();
-                    state = 1;
-
-
-                }
-                else{
-
-                    state=0;
-                }
-            }
-        });
     }
 
     @Override

@@ -56,11 +56,13 @@ public abstract class ContactosAdapter extends RecyclerView.Adapter<ContactosAda
         TextView name;
         ImageView img;
         CheckBox button;
+        ImageView delete;
 
 
         name = holder.nombre;
         img = holder.image;
         button = holder.button;
+        delete = holder.delete;
 
         if (contactL.get(position).getImgconv() == null) {
             name.setText(contactL.get(position).getName());
@@ -131,7 +133,21 @@ public abstract class ContactosAdapter extends RecyclerView.Adapter<ContactosAda
                 }
             }
         });
+
+        holder.delete.setOnClickListener(new View.OnClickListener(){
+
+
+            @Override
+            public void onClick(View view){
+                contactL.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position,contactL.size());
+                notifyDataSetChanged();
+            }
+        });
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -144,6 +160,7 @@ public abstract class ContactosAdapter extends RecyclerView.Adapter<ContactosAda
         TextView nombre;
         ImageView image;
         CheckBox button;
+        ImageView delete;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -151,6 +168,8 @@ public abstract class ContactosAdapter extends RecyclerView.Adapter<ContactosAda
             nombre = itemView.findViewById(R.id.name);
             image = itemView.findViewById(R.id.imga);
             button = itemView.findViewById(R.id.favo);
+            delete = itemView.findViewById(R.id.del);
+
 
 
         }
