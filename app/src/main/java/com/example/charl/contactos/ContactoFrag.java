@@ -40,6 +40,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import icepick.Icepick;
+import icepick.State;
+
 import static android.app.Activity.RESULT_OK;
 import static java.lang.Integer.parseInt;
 
@@ -68,11 +71,19 @@ public class ContactoFrag extends Fragment {
 
 
     ArrayList<Contactos> list = new ArrayList<>();
-    ArrayList<Contactos> list2 = new ArrayList<>();
-    ArrayList<Contactos> list3 = new ArrayList<>();
+   @State ArrayList<Contactos> list2 = new ArrayList<>();
+     ArrayList<Contactos> list3 = new ArrayList<>();
 
 
 
+
+    @Override public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if(list2 != null) {
+            Icepick.saveInstanceState(this, outState);
+        }
+
+    }
 
 
 
@@ -147,9 +158,14 @@ public class ContactoFrag extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         //Preparing the layout for ContactoFragment
 
         view = inflater.inflate(R.layout.fragment_contacto, container, false);
+
+
+
+
 
         rv = view.findViewById(R.id.recycler);
         GridLayoutManager gManager = new GridLayoutManager(getContext(), 3);
@@ -191,6 +207,11 @@ public class ContactoFrag extends Fragment {
 
 
         rv.setAdapter(adapter);
+
+        Icepick.restoreInstanceState(this,savedInstanceState);
+
+
+
 
         SearchView look = getActivity().findViewById(R.id.search);
         look.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
